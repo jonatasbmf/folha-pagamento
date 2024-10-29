@@ -5,46 +5,37 @@ const rotas = [
         key: 1,
         path: "/",
         label: "Home",
-        icon: IconHome,
-        active: false
+        icon: IconHome
     },
     {
         key: 2,
         path: "/empresa",
         label: "Empresa",
-        icon: IconBuildingCommunity,
-        active: false
+        icon: IconBuildingCommunity
     },
     {
         key: 3,
-        path: "#",
-        label: "Cadastro",
-        icon: IconKeyboard,
-        active: false,
-        subMenu: [
-            { key: 1, path: "/cadastro/funcionario", label: "Funcionarios" }
-        ]
+        path: "/cadastro/funcionario",
+        label: "Cadastro Funcionarios",
+        icon: IconKeyboard
     },
     {
         key: 4,
-        path: "#",
-        label: "Tabela",
-        icon: IconKeyboard,
-        active: false,
-        subMenu: [
-            { key: 1, path: "/tabela/inss", label: "INSS" },
-            { key: 2, path: "/tabela/irrf", label: "IRRF" }
-        ]
+        path: "/tabela/inss",
+        label: "Tabela Inss",
+        icon: IconKeyboard
+
+    }, {
+        key: 5,
+        path: "/tabela/irrf",
+        label: "Tabela Irrf",
+        icon: IconKeyboard
     },
     {
-        key: 5,
+        key: 6,
         path: "#",
         label: "Configurações",
-        icon: IconAsset,
-        active: false,
-        subMenu: [
-            { key: 1, path: "/cadastro/tabela/inss", label: "Usuários" }
-        ]
+        icon: IconAsset
     }
 ];
 
