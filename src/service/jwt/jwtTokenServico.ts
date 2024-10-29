@@ -41,6 +41,13 @@ const tokenEstaExpirado = (): boolean => {
   return true;
 };
 
+const validaToken = () => {
+  var tokenExpirado = tokenEstaExpirado();
+
+  if (tokenExpirado)
+    localStorage.removeItem('auth_token');
+}
+
 const decodificarToken = (): TokenDecodificado | null => {
   let jwtToken = obterToken();
 
@@ -55,6 +62,7 @@ const jwtTokenServico = {
   tokenEstaExpirado,
   obterToken,
   gravarToken,
+  validaToken
 };
 
 export default jwtTokenServico;

@@ -1,23 +1,20 @@
-"use client"
+"use client";
 import { MenuProvider } from "@/context/menuContext";
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from "react";
+import { UserProvider, useUserContext } from "@/context/usuarioContext";
 import BarraLateral from "../barraLateral/barraLateral";
 import Cabecalho from "../cabecalho/cabecalho";
 import Rodape from "../rodape/rodape";
 
 export default function Pagina(props: any) {
-    const [logado, setLogado] = useState(false);
-    const router = useRouter();
+    return (
+        <UserProvider>
+            <PaginaInterna {...props} />
+        </UserProvider>
+    );
+}
 
-    useEffect(() => {
-        const authToken = localStorage.getItem('auth_token');
-        if (authToken) {
-            setLogado(true);
-        } else {
-            router.push('/login');
-        }
-    }, [router]);
+function PaginaInterna(props: any) {
+    const { logado } = useUserContext();
 
     if (!logado) return null;
 

@@ -1,7 +1,9 @@
 import BotaoMenu from "@/components/botaoMenu/botaoMenu";
+import { useUserContext } from "@/context/usuarioContext";
 import { IconBrandCashapp, IconUserCircle } from "@tabler/icons-react";
 
 export default function Cabecalho() {
+    const { nome } = useUserContext();
 
     return (
         <div className="flex justify-between items-center min-h-16 bg-blue-900 text-white">
@@ -15,7 +17,7 @@ export default function Cabecalho() {
                 </div>
             </div>
             <div className="flex items-center gap-5 px-3">
-                <div>Joe</div>
+                <div>{nome ?? nome}</div>
                 <div>
                     <IconUserCircle />
                 </div>
