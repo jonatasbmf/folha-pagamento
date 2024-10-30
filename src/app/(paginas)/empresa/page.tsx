@@ -16,7 +16,7 @@ export default function Page() {
 
     return (
         <Pagina>
-            <div className="px-4 mt-4 mb-5">
+            <div className="mb-5">
                 <div className="flex flex-1 mb-3">
                     <Heading size={600}>Listagem de empresas</Heading>
                 </div>
@@ -47,28 +47,26 @@ export default function Page() {
                 </Pane>
             </div>
 
-            <div className="px-4">
-                <Table>
-                    <Table.Head paddingX={10}>
-                        <Table.TextHeaderCell>Nome</Table.TextHeaderCell>
-                        <Table.TextHeaderCell>Razão Social</Table.TextHeaderCell>
-                    </Table.Head>
-                    <Table.Body height={240}>
-                        {empresas.length === 0 ? (
-                            <Table.Row>
-                                <Table.Cell>Nenhuma empresa localizada!</Table.Cell>
+            <Table>
+                <Table.Head paddingX={10}>
+                    <Table.TextHeaderCell>Nome</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Razão Social</Table.TextHeaderCell>
+                </Table.Head>
+                <Table.Body height={240}>
+                    {empresas.length === 0 ? (
+                        <Table.Row>
+                            <Table.Cell>Nenhuma empresa localizada!</Table.Cell>
+                        </Table.Row>
+                    ) : (
+                        empresas.map((empresa) => (
+                            <Table.Row height={40} paddingX={10} key={empresa.id} isSelectable onSelect={() => irParaPagina(`/empresa/${empresa.id!}`)}>
+                                <Table.TextCell>{empresa.nome}</Table.TextCell>
+                                <Table.TextCell>{empresa.razao_social}</Table.TextCell>
                             </Table.Row>
-                        ) : (
-                            empresas.map((empresa) => (
-                                <Table.Row height={40} paddingX={10} key={empresa.id} isSelectable onSelect={() => irParaPagina(`/empresa/${empresa.id!}`)}>
-                                    <Table.TextCell>{empresa.nome}</Table.TextCell>
-                                    <Table.TextCell>{empresa.razao_social}</Table.TextCell>
-                                </Table.Row>
-                            ))
-                        )}
-                    </Table.Body>
-                </Table>
-            </div>
+                        ))
+                    )}
+                </Table.Body>
+            </Table>
         </Pagina>
     );
 }
