@@ -9,7 +9,7 @@ export default function BarraLateral() {
     const pathname = usePathname()
 
     return (
-        <div className={`flex flex-col p-1 ${menuAberto ? "w-60" : "hidden"} bg-gray-300 border-r border-zinc-200 gap-1 overflow-auto max-h-full`}>
+        <div className={`flex flex-col ${menuAberto ? "w-64" : "hidden"} bg-gray-300 border-r border-zinc-200 gap-1 overflow-auto max-h-full`}>
             {rotas.map((route) => (
                 <MenuItem
                     key={route.key}

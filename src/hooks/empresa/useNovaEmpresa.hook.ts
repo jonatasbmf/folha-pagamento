@@ -42,6 +42,13 @@ export const useNovaEmpresa = () => {
         rota.back();
     };
 
+    const formularioValido = (): boolean => {
+        if (!nome || nome.trim().length < 3) return false;
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
+        if (!razaoSocial || razaoSocial.trim().length < 3) return false;
+        return true;
+    }
+
     return {
         loading,
         voltarPaginaAnterior,
@@ -53,5 +60,6 @@ export const useNovaEmpresa = () => {
         email,
         setEmail,
         salvarNovaEmpresa,
+        formularioValido,
     }
 }

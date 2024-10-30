@@ -1,4 +1,5 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
+import { toaster } from "evergreen-ui";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -54,6 +55,11 @@ export const useEditarEmpresa = () => {
 
     const atualizarEmpresa = async () => {
 
+        if (!formularioValido()) {
+            toaster.danger("Existem campos que não foram preenchidos")
+            return;
+        }
+
         var empresa: Empresa = {
             id: id,
             nome: nome,
@@ -64,12 +70,20 @@ export const useEditarEmpresa = () => {
         try {
             setLoading(true);
             await empresa_service.atualizarEmpresa(empresa);
+            toaster.success("Atualizado com sucesso!")
             voltarPaginaAnterior();
         } catch (error) {
 
         } finally {
             setLoading(false);
         }
+    }
+
+    const formularioValido = (): boolean => {
+        if (!nome || nome.trim().length < 3) return false;
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
+        if (!razaoSocial || razaoSocial.trim().length < 3) return false;
+        return true;
     }
 
     return {
@@ -87,5 +101,6 @@ export const useEditarEmpresa = () => {
         setId,
         pegarIdDaRota,
         atualizarEmpresa,
+        formularioValido
     }
 }
