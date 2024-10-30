@@ -1,16 +1,11 @@
 "use client"
 import Pagina from "@/components/Layout/pagina/pagina";
 import { Button, FastBackwardIcon } from "evergreen-ui";
-import { useEffect } from "react";
 import { useEditarEmpresa } from "../../../../hooks/empresa/useEditarEmpresa.hook";
 import { FormEditarEmpresa } from "./formEditarEmpresa";
 
 export default function Page() {
-    const { voltarPaginaAnterior, pegarIdDaRota } = useEditarEmpresa();
-
-    useEffect(() => {
-        pegarIdDaRota()
-    }, [])
+    const { voltarPaginaAnterior } = useEditarEmpresa();
 
     return (
         <Pagina>

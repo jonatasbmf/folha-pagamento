@@ -1,17 +1,14 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { useEstadoEmpresa } from "./useEstadoEmpresa.hook";
 
 export const useEditarEmpresa = () => {
     const [loading, setLoading] = useState(false);
 
-    const {
-        id, setId,
-        nome, setNome,
-        email, setEmail,
-        razaoSocial, setRazaoSocial
-    } = useEstadoEmpresa();
+    const [nome, setNome] = useState<string>("");
+    const [id, setId] = useState<number>(0);
+    const [razaoSocial, setRazaoSocial] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
 
     const rota = useRouter();
     const router = usePathname();
@@ -19,6 +16,7 @@ export const useEditarEmpresa = () => {
     const limparFormCadastro = () => {
         setRazaoSocial("");
         setNome("");
+        setEmail("");
     }
 
     const voltarPaginaAnterior = () => {
@@ -39,20 +37,41 @@ export const useEditarEmpresa = () => {
 
         try {
             const empresaResponse = await empresa_service.buscaPorId(id);
-            console.log(empresaResponse)
+
             if (empresaResponse.status == 200) {
-                alert("entrou")
                 setId(empresaResponse.data.id)
                 setNome(empresaResponse.data.nome);
                 setEmail(empresaResponse.data.email);
-                setRazaoSocial(empresaResponse.data.razaoSocial)
+                setRazaoSocial(empresaResponse.data.razao_social)
             }
+
         } catch (error) {
             console.log(error);
         } finally {
             setLoading(false)
         }
     }
+
+    const atualizarEmpresa = async () => {
+
+        var empresa: Empresa = {
+            id: id,
+            nome: nome,
+            razao_social: razaoSocial,
+            email: email
+        }
+
+        try {
+            setLoading(true);
+            await empresa_service.atualizarEmpresa(empresa);
+            voltarPaginaAnterior();
+        } catch (error) {
+
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return {
         buscarPorId,
         loading,
@@ -67,5 +86,6 @@ export const useEditarEmpresa = () => {
         id,
         setId,
         pegarIdDaRota,
+        atualizarEmpresa,
     }
 }

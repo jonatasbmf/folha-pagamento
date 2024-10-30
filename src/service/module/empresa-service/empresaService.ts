@@ -17,11 +17,16 @@ const salvarNovaEmpresa = async (empresa: Empresa) => {
     return await api_back.post('/empresa', empresa)
 }
 
+const atualizarEmpresa = async (empresa: Empresa) => {
+    await api_back.patch(`/empresa/${empresa.id}`, empresa)
+}
+
 const empresa_service = {
     buscaPorId,
     listarTodas,
     buscarPorNome,
-    salvarNovaEmpresa
+    salvarNovaEmpresa,
+    atualizarEmpresa
 }
 
 export default empresa_service;

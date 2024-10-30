@@ -16,6 +16,7 @@ export const useNovaEmpresa = () => {
     const limparFormCadastro = () => {
         setRazaoSocial("");
         setNome("");
+        setEmail("");
     }
 
     const salvarNovaEmpresa = async () => {

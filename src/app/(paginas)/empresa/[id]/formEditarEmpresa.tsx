@@ -4,24 +4,27 @@ import FormEmpresa from "../formEmpresa";
 
 export function FormEditarEmpresa() {
 
-    const { nome,
+    const {
+        id,
+        nome,
         razaoSocial,
         email,
         setNome,
         setRazaoSocial,
         setEmail,
         limparFormCadastro,
-        pegarIdDaRota
+        pegarIdDaRota,
+        atualizarEmpresa
     } = useEditarEmpresa();
 
     useEffect(() => {
-        pegarIdDaRota
-
+        pegarIdDaRota();
     }, []);
-    alert(nome)
+
     return (
         <div>
             <FormEmpresa
+                id={id}
                 nome={nome}
                 razaoSocial={razaoSocial}
                 email={email}
@@ -29,6 +32,7 @@ export function FormEditarEmpresa() {
                 setRazaoSocial={setRazaoSocial}
                 setEmail={setEmail}
                 limparFormCadastro={limparFormCadastro}
+                atualizarEmpresa={atualizarEmpresa}
             />
         </div>
     )
