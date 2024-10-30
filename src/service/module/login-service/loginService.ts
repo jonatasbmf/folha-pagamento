@@ -1,4 +1,4 @@
-import { api_back } from "../api/api";
+import { api_back } from "@/service/api/api";
 
 const login = async (email: string, senha: string) => {
     return await api_back.post('/autenticacao/login', { email, senha });

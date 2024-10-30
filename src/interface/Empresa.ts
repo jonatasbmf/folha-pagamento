@@ -1,5 +1,5 @@
 interface Empresa {
-    id: number;
+    id?: number;
     nome: string;
     razao_social: string;
     email: string;

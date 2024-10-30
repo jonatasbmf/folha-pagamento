@@ -1,4 +1,4 @@
-import { api_back } from "../api/api";
+import { api_back } from "@/service/api/api";
 
 const buscarPorNome = async (nome: string) => {
     const params = new URLSearchParams({ nome: nome }).toString();
@@ -13,10 +13,15 @@ const listarTodas = async () => {
     return await api_back.get('/empresa');
 }
 
+const salvarNovaEmpresa = async (empresa: Empresa) => {
+    return await api_back.post('/empresa', empresa)
+}
+
 const empresa_service = {
     buscaPorId,
     listarTodas,
-    buscarPorNome
+    buscarPorNome,
+    salvarNovaEmpresa
 }
 
 export default empresa_service;

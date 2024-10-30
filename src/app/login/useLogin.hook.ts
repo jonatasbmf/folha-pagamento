@@ -1,7 +1,7 @@
 "use client";
 
 import jwtTokenServico from "@/service/jwt/jwtTokenServico";
-import login_service from "@/service/login-service/loginService";
+import login_service from "@/service/module/login-service/loginService";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 

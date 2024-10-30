@@ -6,7 +6,7 @@ export default function Cabecalho() {
     const { nome } = useUserContext();
 
     return (
-        <div className="flex justify-between items-center min-h-16 bg-blue-900 text-white">
+        <div className="flex justify-between items-center min-h-12 bg-blue-900 text-white">
             <div className="flex items-center justify-between gap-5 px-2 w-80">
                 <div className="flex items-center gap-4">
                     <IconBrandCashapp />

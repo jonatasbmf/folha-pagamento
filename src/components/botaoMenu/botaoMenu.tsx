@@ -1,6 +1,6 @@
 "use client"
 import { useMenuContext } from "@/context/menuContext";
-import { IconLayoutSidebarRightCollapse, IconMenu } from "@tabler/icons-react";
+import { MenuIcon, MenuOpenIcon } from "evergreen-ui";
 
 export default function BotaoMenu() {
     const { menuAberto, handleMenu } = useMenuContext();
@@ -8,9 +8,9 @@ export default function BotaoMenu() {
     return (
         <button className="w-10 h-10" onClick={handleMenu}>
             {menuAberto ?
-                <IconMenu />
+                <MenuIcon />
                 :
-                <IconLayoutSidebarRightCollapse />
+                <MenuOpenIcon />
             }
         </button>
 
