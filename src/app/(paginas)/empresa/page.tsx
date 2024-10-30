@@ -17,11 +17,11 @@ export default function Page() {
     return (
         <Pagina>
             <div className="px-4 mt-4 mb-5">
-                <Pane display="flex" padding={16} background="tint2" borderRadius={3}>
-                    <Pane flex={1} alignItems="center" display="flex">
-                        <Heading size={600}>Listagem de empresas</Heading>
-                    </Pane>
-                    <Pane className="flex items-center gap-4">
+                <div className="flex flex-1 mb-3">
+                    <Heading size={600}>Listagem de empresas</Heading>
+                </div>
+                <Pane padding={16} background="tint2" borderRadius={3}>
+                    <Pane className="flex items-center justify-between  gap-4">
                         <Button
                             className="w-36"
                             marginY={8}
@@ -36,7 +36,7 @@ export default function Page() {
                                 onChange={(e: { target: { value: SetStateAction<string> } }) =>
                                     setEmpresa(e.target.value)
                                 }
-                                placeholder="Informe um nome para busca..." />
+                                placeholder="Informe um nome e clique na lupa para pesquisa..." />
 
                             <IconButton
                                 disabled={loading}
