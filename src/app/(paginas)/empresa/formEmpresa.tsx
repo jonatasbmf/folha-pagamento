@@ -10,10 +10,10 @@ interface FormEmpresaProps {
     setEmail: (e: SetStateAction<string>) => void;
     salvarNovaEmpresa?: () => void;
     limparFormCadastro: () => void;
+    atualizarEmpresa?: () => void;
 }
 
 export default function FormEmpresa(props: FormEmpresaProps) {
-
     const { nome,
         razaoSocial,
         email,

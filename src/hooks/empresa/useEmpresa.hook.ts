@@ -13,13 +13,6 @@ export const useEmpresa = () => {
         listarEmpresas();
     }, []);
 
-    const novaEmpresa = async () => {
-        rota.push('/empresa/nova')
-    }
-
-    const editarEmpresa = async (id: number) => {
-        rota.push(`/empresa/${id}`)
-    }
 
     const listarEmpresas = async () => {
         setLoading(true)
@@ -54,7 +47,5 @@ export const useEmpresa = () => {
         setEmpresa,
         buscarPorNome,
         loading,
-        novaEmpresa,
-        editarEmpresa,
     }
 }

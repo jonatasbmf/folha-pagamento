@@ -1,12 +1,17 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { useEstadoEmpresa } from "./useEstadoEmpresa.hook";
 
 export const useEditarEmpresa = () => {
     const [loading, setLoading] = useState(false);
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [razaoSocial, setRazaoSocial] = useState("");
+
+    const {
+        id, setId,
+        nome, setNome,
+        email, setEmail,
+        razaoSocial, setRazaoSocial
+    } = useEstadoEmpresa();
 
     const rota = useRouter();
     const router = usePathname();
@@ -31,12 +36,16 @@ export const useEditarEmpresa = () => {
 
     const buscarPorId = async (id: number) => {
         setLoading(true)
+
         try {
-            const buscaPorId = await empresa_service.buscaPorId(id);
-            if (buscaPorId.status == 200) {
-                setNome(buscaPorId.data.nome);
-                setEmail(buscaPorId.data.email);
-                setRazaoSocial(buscaPorId.data.razaoSocial)
+            const empresaResponse = await empresa_service.buscaPorId(id);
+            console.log(empresaResponse)
+            if (empresaResponse.status == 200) {
+                alert("entrou")
+                setId(empresaResponse.data.id)
+                setNome(empresaResponse.data.nome);
+                setEmail(empresaResponse.data.email);
+                setRazaoSocial(empresaResponse.data.razaoSocial)
             }
         } catch (error) {
             console.log(error);
@@ -55,6 +64,8 @@ export const useEditarEmpresa = () => {
         limparFormCadastro,
         email,
         setEmail,
+        id,
+        setId,
         pegarIdDaRota,
     }
 }

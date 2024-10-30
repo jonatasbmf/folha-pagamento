@@ -1,5 +1,5 @@
+import { useNovaEmpresa } from "../../../../hooks/empresa/useNovaEmpresa.hook";
 import FormEmpresa from "../formEmpresa";
-import { useNovaEmpresa } from "./useNovaEmpresa.hook";
 
 export function FormNovaEmpresa() {
     const { nome,
@@ -9,7 +9,8 @@ export function FormNovaEmpresa() {
         setRazaoSocial,
         setEmail,
         salvarNovaEmpresa,
-        limparFormCadastro } = useNovaEmpresa()
+        limparFormCadastro
+    } = useNovaEmpresa()
 
     return (
         <div>

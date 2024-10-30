@@ -1,17 +1,18 @@
 "use client"
 import Pagina from "@/components/Layout/pagina/pagina";
+import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { Button, Group, IconButton, PlusIcon, SearchIcon, Spinner, Table, TextInput } from "evergreen-ui";
 import { SetStateAction } from "react";
-import { useEmpresa } from "./useEmpresa.hook";
+import { useEmpresa } from "../../../hooks/empresa/useEmpresa.hook";
 
 export default function Page() {
     const { empresas,
         empresa,
         setEmpresa,
         buscarPorNome,
-        novaEmpresa,
-        loading,
-        editarEmpresa } = useEmpresa();
+        loading } = useEmpresa();
+
+    const { irParaPagina } = useNavegacao();
 
     return (
         <Pagina>
@@ -22,7 +23,7 @@ export default function Page() {
                     marginY={8}
                     marginRight={12}
                     iconAfter={PlusIcon}
-                    onClick={novaEmpresa}>
+                    onClick={() => irParaPagina('/empresa/nova')}>
                     Nova Empresa
                 </Button>
             </div>
@@ -55,7 +56,7 @@ export default function Page() {
                             </Table.Row>
                         ) : (
                             empresas.map((empresa) => (
-                                <Table.Row key={empresa.id} isSelectable onSelect={() => editarEmpresa(empresa.id!)}>
+                                <Table.Row key={empresa.id} isSelectable onSelect={() => irParaPagina(`/empresa/${empresa.id!}`)}>
                                     <Table.TextCell>{empresa.nome}</Table.TextCell>
                                     <Table.TextCell>{empresa.razao_social}</Table.TextCell>
                                 </Table.Row>

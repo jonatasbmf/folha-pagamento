@@ -1,8 +1,8 @@
 "use client"
 import Pagina from "@/components/Layout/pagina/pagina";
 import { Button, FastBackwardIcon } from "evergreen-ui";
+import { useNovaEmpresa } from "../../../../hooks/empresa/useNovaEmpresa.hook";
 import { FormNovaEmpresa } from "./formNovaEmpresa";
-import { useNovaEmpresa } from "./useNovaEmpresa.hook";
 
 export default function Page() {
     const { voltarPaginaAnterior } = useNovaEmpresa()

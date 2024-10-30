@@ -1,14 +1,17 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useEstadoEmpresa } from "./useEstadoEmpresa.hook";
 
 export const useNovaEmpresa = () => {
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [razaoSocial, setRazaoSocial] = useState("");
     const [loading, setLoading] = useState(false);
-
     const rota = useRouter();
+
+    const {
+        nome, setNome,
+        email, setEmail,
+        razaoSocial, setRazaoSocial
+    } = useEstadoEmpresa();
 
     const limparFormCadastro = () => {
         setRazaoSocial("");

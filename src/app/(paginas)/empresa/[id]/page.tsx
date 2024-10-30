@@ -2,8 +2,8 @@
 import Pagina from "@/components/Layout/pagina/pagina";
 import { Button, FastBackwardIcon } from "evergreen-ui";
 import { useEffect } from "react";
+import { useEditarEmpresa } from "../../../../hooks/empresa/useEditarEmpresa.hook";
 import { FormEditarEmpresa } from "./formEditarEmpresa";
-import { useEditarEmpresa } from "./useEditarEmpresa.hook";
 
 export default function Page() {
     const { voltarPaginaAnterior, pegarIdDaRota } = useEditarEmpresa();

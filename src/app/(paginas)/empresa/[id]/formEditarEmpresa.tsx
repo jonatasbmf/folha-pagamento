@@ -1,5 +1,6 @@
+import { useEffect } from "react";
+import { useEditarEmpresa } from "../../../../hooks/empresa/useEditarEmpresa.hook";
 import FormEmpresa from "../formEmpresa";
-import { useEditarEmpresa } from "./useEditarEmpresa.hook";
 
 export function FormEditarEmpresa() {
 
@@ -9,8 +10,15 @@ export function FormEditarEmpresa() {
         setNome,
         setRazaoSocial,
         setEmail,
-        limparFormCadastro } = useEditarEmpresa();
+        limparFormCadastro,
+        pegarIdDaRota
+    } = useEditarEmpresa();
 
+    useEffect(() => {
+        pegarIdDaRota
+
+    }, []);
+    alert(nome)
     return (
         <div>
             <FormEmpresa
