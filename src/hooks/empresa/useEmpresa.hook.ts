@@ -1,13 +1,10 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const useEmpresa = () => {
     const [empresa, setEmpresa] = useState("");
     const [empresas, setEmpresas] = useState<Empresa[]>([]);
     const [loading, setLoading] = useState(false);
-
-    const rota = useRouter();
 
     useEffect(() => {
         listarEmpresas();

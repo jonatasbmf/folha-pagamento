@@ -1,23 +1,59 @@
 "use client"
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
 import Pagina from "@/components/Layout/pagina/pagina";
-import { PlusIcon } from "evergreen-ui";
+import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
+import { useNavegacao } from "@/hooks/useNavegacao.hook";
+import { PlusIcon, Table } from "evergreen-ui";
+import { useEffect } from "react";
 
 export default function Page() {
+    const { termo, setTermo, buscarPorNome, loading, listarTodos,
+        funcionarios
+    } = useFuncionario();
+
+    const { irParaPagina } = useNavegacao()
+
+    useEffect(() => {
+        listarTodos();
+    }, []);
+
+
     return (
         <Pagina>
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de Funcionários"
                 labelBotao="Novo funcionário"
                 iconeBotao={PlusIcon}
-                funcaoDeBusca={() => { }}
-                loading
+                funcaoDeBusca={() => buscarPorNome}
+                loading={loading}
                 placeHolderBusca="Informe um termo e clique na lupa..."
-                setTermoBusca={() => { }}
-                termoBusca={"termo"}
+                setTermoBusca={setTermo}
+                termoBusca={termo}
                 endPointBotao="funcionario/novo"
             />
 
+            <Table>
+                <Table.Head paddingX={10}>
+                    <Table.TextHeaderCell>Nome</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Salário</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Empresa</Table.TextHeaderCell>
+                </Table.Head>
+                <Table.Body height={240}>
+                    {funcionarios.length === 0 ? (
+                        <Table.Row>
+                            <Table.Cell>Nenhum funcionário localizada!</Table.Cell>
+                        </Table.Row>
+                    ) : (
+                        funcionarios.map((funcionario) => (
+                            <Table.Row height={40} paddingX={10} key={funcionario.id} isSelectable onSelect={() => irParaPagina(`/funcionario/${funcionario.id!}`)}>
+                                <Table.TextCell>{funcionario.nome}</Table.TextCell>
+                                <Table.TextCell>{funcionario.salario}</Table.TextCell>
+                                <Table.TextCell>{funcionario.empresaId}</Table.TextCell>
+                            </Table.Row>
+                        ))
+                    )}
+                </Table.Body>
+            </Table>
         </Pagina>
     )
 }
