@@ -1,8 +1,8 @@
 "use client"
+import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
 import Pagina from "@/components/Layout/pagina/pagina";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
-import { Button, Group, Heading, IconButton, Pane, PlusIcon, SearchIcon, Spinner, Table, TextInput } from "evergreen-ui";
-import { SetStateAction } from "react";
+import { PlusIcon, Table } from "evergreen-ui";
 import { useEmpresa } from "../../../hooks/empresa/useEmpresa.hook";
 
 export default function Page() {
@@ -16,36 +16,17 @@ export default function Page() {
 
     return (
         <Pagina>
-            <div className="mb-5">
-                <div className="flex flex-1 mb-3">
-                    <Heading size={600}>Listagem de empresas</Heading>
-                </div>
-                <Pane padding={16} background="tint2" borderRadius={3}>
-                    <Pane className="flex items-center justify-between  gap-4">
-                        <Button
-                            className="w-36"
-                            marginY={8}
-                            marginRight={12}
-                            iconAfter={PlusIcon}
-                            onClick={() => irParaPagina('/empresa/nova')}>
-                            Nova Empresa
-                        </Button>
-                        <Group>
-                            <TextInput disabled={loading}
-                                value={empresa}
-                                onChange={(e: { target: { value: SetStateAction<string> } }) =>
-                                    setEmpresa(e.target.value)
-                                }
-                                placeholder="Informe um nome e clique na lupa para pesquisa..." />
-
-                            <IconButton
-                                disabled={loading}
-                                icon={loading ? Spinner : SearchIcon}
-                                onClick={buscarPorNome} />
-                        </Group>
-                    </Pane>
-                </Pane>
-            </div>
+            <CabecalhoPaginaComBusca
+                labelCabecalho="Listagem de empresas"
+                endPointBotao="/empresa/nova"
+                iconeBotao={PlusIcon}
+                labelBotao="Nova Empresa"
+                placeHolderBusca="Informe um termo e clique na lupa..."
+                termoBusca={empresa}
+                setTermoBusca={setEmpresa}
+                funcaoDeBusca={buscarPorNome}
+                loading={loading}
+            />
 
             <Table>
                 <Table.Head paddingX={10}>

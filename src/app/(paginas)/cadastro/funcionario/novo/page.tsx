@@ -15,9 +15,9 @@ export default function Page() {
                 placeHolderBusca="Informe um termo e clique na lupa..."
                 setTermoBusca={() => { }}
                 termoBusca={"termo"}
-                endPointBotao="funcionario/novo"
+                endPointBotao="/"
             />
-
+            Novo funcionário
         </Pagina>
     )
 }
