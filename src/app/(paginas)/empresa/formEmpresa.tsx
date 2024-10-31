@@ -1,5 +1,7 @@
-import { Button, Pane, TextInputField } from "evergreen-ui";
-import { SetStateAction } from "react";
+import InputEmail from "@/components/inputs/inputEmail";
+import InputTexto, { InputTextoRef } from "@/components/inputs/inputTexto";
+import { Button, Pane } from "evergreen-ui";
+import { SetStateAction, useRef, useState } from "react";
 
 interface FormEmpresaProps {
     id?: number;
@@ -27,37 +29,59 @@ export default function FormEmpresa(props: FormEmpresaProps) {
         limparFormCadastro,
         atualizarEmpresa } = props;
 
+    const [formValido, setFormValido] = useState(true);
+
+    const inputNomeRef = useRef<InputTextoRef>(null);
+    const inputRazaoSocialRef = useRef<InputTextoRef>(null);
+    const inputEmailRef = useRef<InputTextoRef>(null);
+
+    const verificarValidadeFormulario = () => {
+        const nomeValido = inputNomeRef.current?.isValid ?? false;
+        const razaoSocialValido = inputRazaoSocialRef.current?.isValid ?? false;
+        const emailValido = inputEmailRef.current?.isValid ?? false;
+
+        const formularioValido = nomeValido && razaoSocialValido && emailValido;
+        setFormValido(formularioValido);
+    };
+
     return (
         <>
             <Pane padding={16} background="tint2" borderRadius={3}>
                 <input style={{ display: 'none' }} type="number" disabled value={id} />
-                <TextInputField
+                <InputTexto
                     label="Nome"
                     placeholder="Digite o Nome da empresa..."
+                    validationMessage="Campo não pode ser vazio."
                     value={nome}
-                    required
-                    onChange={(e: { target: { value: SetStateAction<string>; }; }) => setNome(e.target.value)}
+                    required={true}
+                    setValue={setNome}
+                    ref={inputNomeRef}
                 />
-                <TextInputField
+                <InputTexto
                     label="Razão Social"
                     placeholder="Digite a Razão Social da empresa..."
+                    validationMessage="Campo não pode ser vazio."
                     value={razaoSocial}
-                    required
-                    onChange={(e: { target: { value: SetStateAction<string>; }; }) => setRazaoSocial(e.target.value)}
+                    required={true}
+                    ref={inputRazaoSocialRef}
+                    setValue={setRazaoSocial}
                 />
-                <TextInputField
+                <InputEmail
                     label="E-mail"
                     placeholder="Digite o e-mail da empresa..."
                     value={email}
-                    required
-                    onChange={(e: { target: { value: SetStateAction<string>; }; }) => setEmail(e.target.value)}
+                    required={true}
+                    validationMessage="E-mail precisa ser válido"
+                    ref={inputEmailRef}
+                    setValue={setEmail}
                 />
             </Pane>
             <Pane marginTop={10} padding={16} background="tint2" borderRadius={3}>
                 <div className="flex justify-end gap-2">
                     <Button marginRight={16}
                         onClick={id ? atualizarEmpresa : salvarNovaEmpresa}
-                        intent="success">
+                        intent="success"
+                    >
                         Salvar
                     </Button>
                     <Button marginRight={16}
