@@ -14,7 +14,8 @@ export function FormEditarEmpresa() {
         setEmail,
         limparFormCadastro,
         pegarIdDaRota,
-        atualizarEmpresa
+        atualizarEmpresa,
+        apagarEmpresa
     } = useEditarEmpresa();
 
     useEffect(() => {
@@ -33,6 +34,7 @@ export function FormEditarEmpresa() {
                 setEmail={setEmail}
                 limparFormCadastro={limparFormCadastro}
                 atualizarEmpresa={atualizarEmpresa}
+                apagarEmpresa={apagarEmpresa}
             />
         </div>
     )

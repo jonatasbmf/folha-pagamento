@@ -1,6 +1,8 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { verificarValidadeFormulario } from "./helpers/validacaoFormulario";
 import { useEstadoEmpresa } from "./useEstadoEmpresa.hook";
 
 export const useNovaEmpresa = () => {
@@ -20,6 +22,11 @@ export const useNovaEmpresa = () => {
     }
 
     const salvarNovaEmpresa = async () => {
+
+        if (!verificarValidadeFormulario(nome, razaoSocial, email)) {
+            toast.error(`Preencha corretamente o formulário!`)
+            return;
+        }
         const novaEmpresa: Empresa = {
             nome: nome,
             razao_social: razaoSocial,
@@ -42,12 +49,6 @@ export const useNovaEmpresa = () => {
         rota.back();
     };
 
-    const formularioValido = (): boolean => {
-        if (!nome || nome.trim().length < 3) return false;
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
-        if (!razaoSocial || razaoSocial.trim().length < 3) return false;
-        return true;
-    }
 
     return {
         loading,
@@ -60,6 +61,5 @@ export const useNovaEmpresa = () => {
         email,
         setEmail,
         salvarNovaEmpresa,
-        formularioValido,
     }
 }

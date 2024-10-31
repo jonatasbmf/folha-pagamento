@@ -1,7 +1,8 @@
 import empresa_service from "@/service/module/empresa-service/empresaService";
-import { toaster } from "evergreen-ui";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { verificarValidadeFormulario } from "./helpers/validacaoFormulario";
 
 export const useEditarEmpresa = () => {
     const [loading, setLoading] = useState(false);
@@ -54,12 +55,10 @@ export const useEditarEmpresa = () => {
     }
 
     const atualizarEmpresa = async () => {
-
-        if (!formularioValido()) {
-            toaster.danger("Existem campos que não foram preenchidos")
+        if (!verificarValidadeFormulario(nome, razaoSocial, email)) {
+            toast.error("Preencha corretamente o formulário.")
             return;
         }
-
         var empresa: Empresa = {
             id: id,
             nome: nome,
@@ -70,20 +69,26 @@ export const useEditarEmpresa = () => {
         try {
             setLoading(true);
             await empresa_service.atualizarEmpresa(empresa);
-            toaster.success("Atualizado com sucesso!")
+            toast.success(`Salvo com sucesso! ${nome}`)
             voltarPaginaAnterior();
         } catch (error) {
-
+            console.error(error);
         } finally {
             setLoading(false);
         }
     }
 
-    const formularioValido = (): boolean => {
-        if (!nome || nome.trim().length < 3) return false;
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
-        if (!razaoSocial || razaoSocial.trim().length < 3) return false;
-        return true;
+    const apagarEmpresa = async (id: number) => {
+        try {
+            setLoading(true)
+            await empresa_service.apagarEmpresa(id);
+            toast.warning(`Empresa apagada com sucesso! ${nome}`)
+            voltarPaginaAnterior()
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return {
@@ -101,6 +106,6 @@ export const useEditarEmpresa = () => {
         setId,
         pegarIdDaRota,
         atualizarEmpresa,
-        formularioValido
+        apagarEmpresa,
     }
 }

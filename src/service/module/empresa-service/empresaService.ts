@@ -21,12 +21,17 @@ const atualizarEmpresa = async (empresa: Empresa) => {
     await api_back.patch(`/empresa/${empresa.id}`, empresa)
 }
 
+const apagarEmpresa = async (id: number) => {
+    await api_back.delete(`/empresa/${id}`);
+}
+
 const empresa_service = {
     buscaPorId,
     listarTodas,
     buscarPorNome,
     salvarNovaEmpresa,
-    atualizarEmpresa
+    atualizarEmpresa,
+    apagarEmpresa,
 }
 
 export default empresa_service;

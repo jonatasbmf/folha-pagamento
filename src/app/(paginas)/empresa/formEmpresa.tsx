@@ -14,6 +14,7 @@ interface FormEmpresaProps {
     salvarNovaEmpresa?: () => void;
     limparFormCadastro: () => void;
     atualizarEmpresa?: () => void;
+    apagarEmpresa?: (value: number) => void;
 }
 
 export default function FormEmpresa(props: FormEmpresaProps) {
@@ -27,7 +28,9 @@ export default function FormEmpresa(props: FormEmpresaProps) {
         setEmail,
         salvarNovaEmpresa,
         limparFormCadastro,
-        atualizarEmpresa } = props;
+        atualizarEmpresa,
+        apagarEmpresa,
+    } = props;
 
     const [formValido, setFormValido] = useState(true);
 
@@ -90,7 +93,7 @@ export default function FormEmpresa(props: FormEmpresaProps) {
                         Limpar
                     </Button>
                     {id ? (<Button marginRight={16}
-                        onClick={limparFormCadastro}
+                        onClick={id && apagarEmpresa ? () => apagarEmpresa(id) : undefined}
                         intent="danger">
                         Excluir
                     </Button>) : null}

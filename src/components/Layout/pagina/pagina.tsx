@@ -2,6 +2,8 @@
 import { MenuProvider } from "@/context/menuContext";
 import { UserProvider, useUserContext } from "@/context/usuarioContext";
 import React, { useMemo } from "react";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import BarraLateral from "../barraLateral/barraLateral";
 import Cabecalho from "../cabecalho/cabecalho";
 import Rodape from "../rodape/rodape";
@@ -34,6 +36,7 @@ const Pagina = (props: any) => {
         <UserProvider>
             <MenuProvider>
                 <PaginaInterna {...props} />
+                <ToastContainer />
             </MenuProvider >
         </UserProvider>
     );
