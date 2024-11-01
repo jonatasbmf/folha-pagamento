@@ -23,7 +23,7 @@ export const useFuncionario = () => {
             salario,
             empresaId
         }
-
+        console.table(novoFuncionario)
         if (!validarFuncionario(nome, salario, empresaId)) {
             toast.error("Não foi possível salvar um novo funcionário");
             return;

@@ -1,3 +1,4 @@
+import Pagina from "@/components/Layout/pagina/pagina";
 import { UserProvider } from "@/context/usuarioContext";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -16,7 +17,9 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         <UserProvider>
-          {children}
+          <Pagina>
+            {children}
+          </Pagina>
         </UserProvider>
       </body>
     </html>

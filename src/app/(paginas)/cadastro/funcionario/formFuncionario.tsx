@@ -2,7 +2,7 @@ import InputMoeda from "@/components/inputs/inputMoeda";
 import InputTexto from "@/components/inputs/inputTexto";
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { Button, Pane, SelectField } from "evergreen-ui";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function FormFuncionario() {
     const {
@@ -27,8 +27,6 @@ export default function FormFuncionario() {
         listarEmpresas();
     }, []);
 
-    const [salarioString, setSalarioString] = useState("");
-
     return (
         <>
             <Pane padding={16} background="tint2" borderRadius={3}>
@@ -43,9 +41,9 @@ export default function FormFuncionario() {
                 />
                 <InputMoeda
                     label="Salário"
-                    value={salarioString}
+                    value={salario}
                     required
-                    setValue={setSalarioString}
+                    setValue={setSalario}
                     validationMessage="Valor precisa ser informado e maior que zero."
                     placeholder="R$ 0,00"
                 />

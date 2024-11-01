@@ -1,10 +1,9 @@
 "use client"
-import Pagina from "@/components/Layout/pagina/pagina";
 import { Heading, HomeIcon, ListItem, OrderedList, Pane, Text } from "evergreen-ui";
 
 export default function Home() {
   return (
-    <Pagina>
+    <>
       <div className="mb-5">
         <div className="flex flex-1 items-center gap-4 mb-3">
           <HomeIcon />
@@ -36,6 +35,6 @@ export default function Home() {
           </Pane>
         </Pane>
       </div>
-    </Pagina>
+    </>
   );
 }

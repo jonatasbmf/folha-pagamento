@@ -1,6 +1,7 @@
 // src/components/InputMoeda.tsx
+import { converterFloatParaMoedaString, converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
 import { TextInputField } from "evergreen-ui";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { NumericFormat } from 'react-number-format';
 
 interface InputMoedaProps {
@@ -10,8 +11,8 @@ interface InputMoedaProps {
     description?: string;
     validationMessage?: string;
     disabled?: boolean;
-    value: string;
-    setValue: (value: string) => void;
+    value: number;
+    setValue: (value: number) => void;
 }
 
 export interface InputMoedaRef {
@@ -31,18 +32,24 @@ const
             setValue
         } = props;
 
+        const [salarioString, setSalarioString] = useState("");
+
         const [valido, setValido] = useState(true);
 
+        useEffect(() => {
+            if (value)
+                setSalarioString(converterFloatParaMoedaString(value));
+        }, []);
+
         const validarCampo = () => {
-            // Remove caracteres não numéricos, exceto vírgulas e pontos, validar se deve
-            // ser ponto a casa decimal ou virgula, a correção será aqui na validação do campo
-            const numericValue = parseFloat(value.replace(/[^\d,-]/g, '').replace(',', '.'));
+            const numericValue = converterMoedaStringParaFloat(salarioString);
 
             if (required) {
                 if (isNaN(numericValue) || numericValue <= 0) {
                     setValido(false);
                 } else {
                     setValido(true);
+                    setValue(numericValue);
                 }
             }
         };
@@ -53,10 +60,10 @@ const
 
         return (
             <NumericFormat
-                value={value}
+                value={salarioString}
                 onValueChange={(values) => {
                     const { formattedValue } = values;
-                    setValue(formattedValue);
+                    setSalarioString(formattedValue);
                 }}
                 thousandSeparator="."
                 decimalSeparator=","

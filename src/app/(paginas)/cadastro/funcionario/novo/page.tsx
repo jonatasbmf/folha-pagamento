@@ -1,24 +1,20 @@
 "use client"
-import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
-import Pagina from "@/components/Layout/pagina/pagina";
-import { PlusIcon } from "evergreen-ui";
+import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoPaginaNavegacao";
+import { useNavegacao } from "@/hooks/useNavegacao.hook";
+import { FastBackwardIcon } from "evergreen-ui";
 import FormFuncionario from "../formFuncionario";
 
 export default function Page() {
+    const { voltarPaginaAnterior } = useNavegacao();
     return (
-        <Pagina>
-            <CabecalhoPaginaComBusca
+        <>
+            <CabecalhoPaginaComNavegacao
                 labelCabecalho="Listagem de Funcionários"
-                labelBotao="Novo funcionário"
-                iconeBotao={PlusIcon}
-                funcaoDeBusca={() => { }}
-                loading
-                placeHolderBusca="Informe um termo e clique na lupa..."
-                setTermoBusca={() => { }}
-                termoBusca={"termo"}
-                endPointBotao="/"
+                labelBotao="Voltar"
+                iconeBotao={FastBackwardIcon}
+                acaoBotao={voltarPaginaAnterior}
             />
             <FormFuncionario />
-        </Pagina>
+        </>
     )
 }

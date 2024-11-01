@@ -1,6 +1,5 @@
 "use client"
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
-import Pagina from "@/components/Layout/pagina/pagina";
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table } from "evergreen-ui";
@@ -19,7 +18,7 @@ export default function Page() {
 
 
     return (
-        <Pagina>
+        <>
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de Funcionários"
                 labelBotao="Novo funcionário"
@@ -54,6 +53,6 @@ export default function Page() {
                     )}
                 </Table.Body>
             </Table>
-        </Pagina>
+        </>
     )
 }

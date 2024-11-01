@@ -1,6 +1,5 @@
 "use client"
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
-import Pagina from "@/components/Layout/pagina/pagina";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table } from "evergreen-ui";
 import { useEffect } from "react";
@@ -23,7 +22,7 @@ export default function Page() {
     }, []);
 
     return (
-        <Pagina>
+        <>
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de empresas"
                 endPointBotao="/empresa/nova"
@@ -56,6 +55,6 @@ export default function Page() {
                     )}
                 </Table.Body>
             </Table>
-        </Pagina>
+        </>
     );
 }
