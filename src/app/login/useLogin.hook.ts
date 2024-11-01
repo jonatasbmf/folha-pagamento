@@ -1,5 +1,6 @@
 "use client";
 
+import { useUserContext } from "@/context/usuarioContext";
 import jwtTokenServico from "@/service/jwt/jwtTokenServico";
 import login_service from "@/service/module/login-service/loginService";
 import { useRouter } from 'next/navigation';
@@ -16,6 +17,7 @@ export const useLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+    const { setLogado } = useUserContext();
 
     const login = async () => {
         try {
@@ -24,11 +26,13 @@ export const useLogin = () => {
             if (resposta.statusCode === 200) {
                 jwtTokenServico.gravarToken(resposta.data.auth_token);
                 setErroLogin(null);
+                setLogado(true);
+                router.push('/');
             } else {
                 setErroLogin(resposta.message || "Erro ao tentar fazer login. Por favor, tente novamente.");
             }
 
-            router.push("/");
+            router.refresh();
         } catch (err) {
             setErroLogin("Usuário ou senha inválidos. Por favor, verifique suas credenciais.");
         }

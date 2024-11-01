@@ -9,9 +9,11 @@ export const useFuncionario = () => {
     const [id, setId] = useState<number>(0);
     const [nome, setNome] = useState<string>('');
     const [salario, setSalario] = useState<number>(0);
+    const [salarioString, setSalarioString] = useState<string>('');
     const [empresaId, setEmpresaId] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
     const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
+    const [funcionario, setFuncionario] = useState<Funcionario>();
     const [termo, setTermo] = useState<string>('');
     const [empresas, setEmpresas] = useState<Empresa[]>([])
 
@@ -23,7 +25,7 @@ export const useFuncionario = () => {
             salario,
             empresaId
         }
-        console.table(novoFuncionario)
+
         if (!validarFuncionario(nome, salario, empresaId)) {
             toast.error("Não foi possível salvar um novo funcionário");
             return;
@@ -116,7 +118,6 @@ export const useFuncionario = () => {
                 toast.info("Não foi possivel listar as empresas.")
 
             setEmpresas(empresasResponse!);
-
         } catch (error) {
             console.error(error)
         } finally {
@@ -131,10 +132,31 @@ export const useFuncionario = () => {
         setEmpresaId(0);
     }
 
+    const buscarPorId = async (id: number) => {
+        try {
+            setLoading(true);
+            var funcionarioResponse = await funcionario_service.buscaPorId(id);
+            listarEmpresas();
+
+            if (funcionarioResponse.status !== 200) {
+                toast.error("Nâo foi possivel buscar funcionário.")
+            }
+
+            setFuncionario(funcionarioResponse.data)
+        } catch (error) {
+            console.error(error);
+            toast.error("Nâo foi possivel buscar funcionário.")
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
     return {
         id, setId,
         nome, setNome,
         salario, setSalario,
+        salarioString, setSalarioString,
         empresaId, setEmpresaId,
         funcionarios, setFuncionarios,
         termo, setTermo,
@@ -146,6 +168,8 @@ export const useFuncionario = () => {
         buscarPorNome,
         listarEmpresas,
         empresas,
-        limparFormulario
+        limparFormulario,
+        buscarPorId,
+        funcionario
     }
 }

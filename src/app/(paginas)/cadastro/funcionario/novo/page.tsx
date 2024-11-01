@@ -2,7 +2,7 @@
 import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoPaginaNavegacao";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { FastBackwardIcon } from "evergreen-ui";
-import FormFuncionario from "../formFuncionario";
+import { FormNovoFuncionario } from "./formNovoFuncionario";
 
 export default function Page() {
     const { voltarPaginaAnterior } = useNavegacao();
@@ -14,7 +14,7 @@ export default function Page() {
                 iconeBotao={FastBackwardIcon}
                 acaoBotao={voltarPaginaAnterior}
             />
-            <FormFuncionario />
+            <FormNovoFuncionario />
         </>
     )
 }

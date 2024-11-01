@@ -1,32 +1,38 @@
 import InputMoeda from "@/components/inputs/inputMoeda";
 import InputTexto from "@/components/inputs/inputTexto";
-import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { Button, Pane, SelectField } from "evergreen-ui";
-import { useEffect } from "react";
+import { SetStateAction } from "react";
 
-export default function FormFuncionario() {
+interface FormFuncionarioProps {
+    id?: number;
+    nome: string;
+    setNome: (e: SetStateAction<string>) => void;
+    salarioString: string;
+    setSalarioString: (e: string) => void;
+    empresaId: number
+    setEmpresaId: (value: number) => void;
+    empresas: Empresa[];
+    atualizar?: () => void;
+    salvar?: () => void;
+    limparFormulario: () => void
+    apagar?: (value: number) => {}
+}
+
+export default function FormFuncionario(props: FormFuncionarioProps) {
     const {
-        id, setId,
-        nome, setNome,
-        salario, setSalario,
-        empresaId, setEmpresaId,
-        funcionarios, setFuncionarios,
-        termo, setTermo,
-        loading,
-        salvar,
-        atualizar,
-        apagar,
-        listarTodos,
-        buscarPorNome,
+        id,
+        nome,
+        setNome,
+        salarioString,
+        setSalarioString,
+        empresaId,
+        setEmpresaId,
         empresas,
-        listarEmpresas,
-        limparFormulario
-    } = useFuncionario();
-
-    useEffect(() => {
-        listarEmpresas();
-    }, []);
-
+        atualizar,
+        salvar,
+        limparFormulario,
+        apagar
+    } = props;
     return (
         <>
             <Pane padding={16} background="tint2" borderRadius={3}>
@@ -41,9 +47,9 @@ export default function FormFuncionario() {
                 />
                 <InputMoeda
                     label="Salário"
-                    value={salario}
+                    value={salarioString}
                     required
-                    setValue={setSalario}
+                    setValue={setSalarioString}
                     validationMessage="Valor precisa ser informado e maior que zero."
                     placeholder="R$ 0,00"
                 />

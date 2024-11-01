@@ -2,6 +2,7 @@ import Pagina from "@/components/Layout/pagina/pagina";
 import { MenuProvider } from "@/context/menuContext";
 import { UserProvider } from "@/context/usuarioContext";
 import type { Metadata } from "next";
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
 export const metadata: Metadata = {

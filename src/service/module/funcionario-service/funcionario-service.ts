@@ -2,11 +2,11 @@ import { api_back } from "@/service/api/api";
 
 const buscarPorNome = async (nome: string) => {
     const params = new URLSearchParams({ nome: nome }).toString();
-    return await api_back.get(`/funcionario?${params}`);
+    return await api_back.get(`/funcionario/buscar/nome?nome=${params}`);
 }
 
 const buscaPorId = async (id: number) => {
-    return await api_back.get(`/funcionario/${id}`)
+    return await api_back.get(`/funcionario/buscar/id/${id}`)
 }
 
 const listarTodos = async () => {

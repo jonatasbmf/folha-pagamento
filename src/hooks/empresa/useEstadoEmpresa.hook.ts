@@ -2,9 +2,9 @@ import { useState } from "react";
 
 export const useEstadoEmpresa = () => {
     const [id, setId] = useState(0);
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [razaoSocial, setRazaoSocial] = useState("");
+    const [nome, setNome] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [razaoSocial, setRazaoSocial] = useState<string>('');
 
     return {
         id, setId,

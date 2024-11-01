@@ -1,7 +1,7 @@
 // src/components/InputMoeda.tsx
-import { converterFloatParaMoedaString, converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
+import { converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
 import { TextInputField } from "evergreen-ui";
-import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { NumericFormat } from 'react-number-format';
 
 interface InputMoedaProps {
@@ -11,8 +11,8 @@ interface InputMoedaProps {
     description?: string;
     validationMessage?: string;
     disabled?: boolean;
-    value: number;
-    setValue: (value: number) => void;
+    value: string;
+    setValue: (value: string) => void;
 }
 
 export interface InputMoedaRef {
@@ -32,24 +32,16 @@ const
             setValue
         } = props;
 
-        const [salarioString, setSalarioString] = useState("");
-
         const [valido, setValido] = useState(true);
 
-        useEffect(() => {
-            if (value)
-                setSalarioString(converterFloatParaMoedaString(value));
-        }, []);
-
         const validarCampo = () => {
-            const numericValue = converterMoedaStringParaFloat(salarioString);
+            const numericValue = converterMoedaStringParaFloat(value);
 
             if (required) {
                 if (isNaN(numericValue) || numericValue <= 0) {
                     setValido(false);
                 } else {
                     setValido(true);
-                    setValue(numericValue);
                 }
             }
         };
@@ -60,10 +52,10 @@ const
 
         return (
             <NumericFormat
-                value={salarioString}
+                value={value}
                 onValueChange={(values) => {
                     const { formattedValue } = values;
-                    setSalarioString(formattedValue);
+                    setValue(formattedValue);
                 }}
                 thousandSeparator="."
                 decimalSeparator=","

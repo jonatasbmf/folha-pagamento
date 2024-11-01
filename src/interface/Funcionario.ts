@@ -3,4 +3,5 @@ interface Funcionario {
     nome: string;
     salario: number;
     empresaId: number;
+    empresa?: Empresa
 }
