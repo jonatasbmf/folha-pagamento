@@ -1,23 +1,23 @@
-import empresa_service from "@/service/module/empresa-service/empresaService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import buscarPorRazaoSocial from "./helpers/buscarEmpresaPorRazaoSocial";
+import listarTodasEmpresas from "./helpers/listarTodasEmpresas";
 
 export const useEmpresa = () => {
     const [empresa, setEmpresa] = useState("");
     const [empresas, setEmpresas] = useState<Empresa[]>([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        listarEmpresas();
-    }, []);
-
-
-    const listarEmpresas = async () => {
+    const listarEmpresas = async (): Promise<void> => {
         setLoading(true)
         try {
-            const buscaEmpresas = await empresa_service.listarTodas();
-            if (buscaEmpresas.status === 200) {
-                setEmpresas(buscaEmpresas.data);
-            }
+            const resposta = await listarTodasEmpresas();
+
+            if (resposta === undefined)
+                toast.info("Não foi possivel listar todas empresas.")
+
+            setEmpresas(resposta!);
+
         } catch (error) {
             console.error(error);
         } finally {
@@ -28,9 +28,12 @@ export const useEmpresa = () => {
     const buscarPorNome = async () => {
         setLoading(true)
         try {
-            const buscoPorNome = await empresa_service.buscarPorNome(empresa);
-            if (buscoPorNome.status == 200)
-                setEmpresas(buscoPorNome.data);
+            const resposta = await buscarPorRazaoSocial(empresa);
+
+            if (resposta === undefined)
+                toast.info("Não foi possivel localizar a empresa informada.");
+
+            setEmpresas(resposta!);
         } catch (error) {
             console.log(error);
         } finally {
@@ -44,5 +47,6 @@ export const useEmpresa = () => {
         setEmpresa,
         buscarPorNome,
         loading,
+        listarEmpresas
     }
 }

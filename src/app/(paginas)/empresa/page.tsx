@@ -3,16 +3,24 @@ import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPagin
 import Pagina from "@/components/Layout/pagina/pagina";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table } from "evergreen-ui";
+import { useEffect } from "react";
 import { useEmpresa } from "../../../hooks/empresa/useEmpresa.hook";
 
 export default function Page() {
-    const { empresas,
+    const {
+        empresas,
         empresa,
         setEmpresa,
         buscarPorNome,
-        loading } = useEmpresa();
+        loading,
+        listarEmpresas
+    } = useEmpresa();
 
     const { irParaPagina } = useNavegacao();
+
+    useEffect(() => {
+        listarEmpresas();
+    }, []);
 
     return (
         <Pagina>

@@ -2,6 +2,7 @@
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
 import Pagina from "@/components/Layout/pagina/pagina";
 import { PlusIcon } from "evergreen-ui";
+import FormFuncionario from "../formFuncionario";
 
 export default function Page() {
     return (
@@ -17,7 +18,7 @@ export default function Page() {
                 termoBusca={"termo"}
                 endPointBotao="/"
             />
-            Novo funcionário
+            <FormFuncionario />
         </Pagina>
     )
 }

@@ -1,7 +1,7 @@
 import InputEmail from "@/components/inputs/inputEmail";
 import InputTexto, { InputTextoRef } from "@/components/inputs/inputTexto";
 import { Button, Pane } from "evergreen-ui";
-import { SetStateAction, useRef, useState } from "react";
+import { SetStateAction, useRef } from "react";
 
 interface FormEmpresaProps {
     id?: number;
@@ -32,20 +32,9 @@ export default function FormEmpresa(props: FormEmpresaProps) {
         apagarEmpresa,
     } = props;
 
-    const [formValido, setFormValido] = useState(true);
-
     const inputNomeRef = useRef<InputTextoRef>(null);
     const inputRazaoSocialRef = useRef<InputTextoRef>(null);
     const inputEmailRef = useRef<InputTextoRef>(null);
-
-    const verificarValidadeFormulario = () => {
-        const nomeValido = inputNomeRef.current?.isValid ?? false;
-        const razaoSocialValido = inputRazaoSocialRef.current?.isValid ?? false;
-        const emailValido = inputEmailRef.current?.isValid ?? false;
-
-        const formularioValido = nomeValido && razaoSocialValido && emailValido;
-        setFormValido(formularioValido);
-    };
 
     return (
         <>

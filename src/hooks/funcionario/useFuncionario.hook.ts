@@ -1,6 +1,7 @@
 import funcionario_service from "@/service/module/funcionario-service/funcionario-service";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import listarTodasEmpresas from "../empresa/helpers/listarTodasEmpresas";
 import { useNavegacao } from "../useNavegacao.hook";
 import { validarFuncionario } from "./helpers/validacaoFuncionario";
 
@@ -12,6 +13,7 @@ export const useFuncionario = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
     const [termo, setTermo] = useState<string>('');
+    const [empresas, setEmpresas] = useState<Empresa[]>([])
 
     const { voltarPaginaAnterior } = useNavegacao();
 
@@ -22,8 +24,10 @@ export const useFuncionario = () => {
             empresaId
         }
 
-        if (!validarFuncionario(nome, salario, empresaId))
+        if (!validarFuncionario(nome, salario, empresaId)) {
             toast.error("Não foi possível salvar um novo funcionário");
+            return;
+        }
 
         try {
             setLoading(true);
@@ -45,8 +49,10 @@ export const useFuncionario = () => {
             empresaId
         }
 
-        if (!validarFuncionario(nome, salario, empresaId))
+        if (!validarFuncionario(nome, salario, empresaId)) {
             toast.error("Não foi possível salvar um novo funcionário");
+            return;
+        }
 
         try {
             setLoading(true);
@@ -60,7 +66,7 @@ export const useFuncionario = () => {
         }
     }
 
-    const apagar = async () => {
+    const apagar = async (id: number) => {
         try {
             setLoading(true);
             await funcionario_service.apagar(id);
@@ -101,6 +107,30 @@ export const useFuncionario = () => {
         }
     }
 
+    const listarEmpresas = async () => {
+        try {
+            setLoading(true);
+
+            const empresasResponse = await listarTodasEmpresas();
+            if (empresasResponse === undefined)
+                toast.info("Não foi possivel listar as empresas.")
+
+            setEmpresas(empresasResponse!);
+
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false);
+
+        }
+    }
+
+    const limparFormulario = () => {
+        setNome("")
+        setSalario(0);
+        setEmpresaId(0);
+    }
+
     return {
         id, setId,
         nome, setNome,
@@ -114,5 +144,8 @@ export const useFuncionario = () => {
         apagar,
         listarTodos,
         buscarPorNome,
+        listarEmpresas,
+        empresas,
+        limparFormulario
     }
 }

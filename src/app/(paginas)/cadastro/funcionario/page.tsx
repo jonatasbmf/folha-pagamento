@@ -41,7 +41,7 @@ export default function Page() {
                 <Table.Body height={240}>
                     {funcionarios.length === 0 ? (
                         <Table.Row>
-                            <Table.Cell>Nenhum funcionário localizada!</Table.Cell>
+                            <Table.Cell>Nenhum funcionário localizado!</Table.Cell>
                         </Table.Row>
                     ) : (
                         funcionarios.map((funcionario) => (
