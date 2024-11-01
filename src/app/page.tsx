@@ -15,7 +15,6 @@ export default function Home() {
               Estou aprendendo Nest e Next, assim pensei, pq não criar um caso de uso muito simples?
             </Text>
 
-
             <ListItem>Então o que esperar desse estudo? (front/back)</ListItem>
             <OrderedList>
               <ListItem>Cadastro de empresa</ListItem>

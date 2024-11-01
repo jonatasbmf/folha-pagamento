@@ -1,6 +1,5 @@
 "use client";
-import { MenuProvider } from "@/context/menuContext";
-import { UserProvider, useUserContext } from "@/context/usuarioContext";
+import { useUserContext } from "@/context/usuarioContext";
 import React, { useMemo } from "react";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +7,7 @@ import BarraLateral from "../barraLateral/barraLateral";
 import Cabecalho from "../cabecalho/cabecalho";
 import Rodape from "../rodape/rodape";
 
-const PaginaInterna = React.memo((props: any) => {
+const Pagina = React.memo((props: any) => {
     const { logado } = useUserContext();
 
     if (!logado) return null;
@@ -24,22 +23,12 @@ const PaginaInterna = React.memo((props: any) => {
                 {barraLateralMemo}
                 <main className="bg-gray-200 p-2 flex-1">
                     {props.children}
+                    <ToastContainer />
                 </main>
             </div>
             {rodapeMemo}
         </div>
     );
 });
-
-const Pagina = (props: any) => {
-    return (
-        <UserProvider>
-            <MenuProvider>
-                <PaginaInterna {...props} />
-                <ToastContainer />
-            </MenuProvider >
-        </UserProvider>
-    );
-};
 
 export default Pagina;

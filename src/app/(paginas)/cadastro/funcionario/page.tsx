@@ -44,7 +44,7 @@ export default function Page() {
                         </Table.Row>
                     ) : (
                         funcionarios.map((funcionario) => (
-                            <Table.Row height={40} paddingX={10} key={funcionario.id} isSelectable onSelect={() => irParaPagina(`/funcionario/${funcionario.id!}`)}>
+                            <Table.Row height={40} paddingX={10} key={funcionario.id} isSelectable onSelect={() => irParaPagina(`funcionario/${funcionario.id!}`)}>
                                 <Table.TextCell>{funcionario.nome}</Table.TextCell>
                                 <Table.TextCell>{funcionario.salario}</Table.TextCell>
                                 <Table.TextCell>{funcionario.empresaId}</Table.TextCell>
