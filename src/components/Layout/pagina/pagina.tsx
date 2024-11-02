@@ -1,17 +1,30 @@
 "use client";
 import LoginPage from "@/app/login/page";
-import TokenValidator from "@/components/tokerValidador/tokerValidador";
+import validarToken from "@/components/tokerValidador/utils/validarToken";
 import { useUserContext } from "@/context/usuarioContext";
-import React from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import BarraLateral from "../barraLateral/barraLateral";
 import Cabecalho from "../cabecalho/cabecalho";
 import Rodape from "../rodape/rodape";
 
 const Pagina = React.memo((props: any) => {
-    const { logado } = useUserContext();
+    const { logado, setLogado } = useUserContext();
 
-    if (!logado) return <LoginPage />;
+    const path = usePathname();
+
+    useEffect(() => {
+        const usuarioLogado = async () => {
+            const usuarioLogado = await validarToken();
+            if (!usuarioLogado)
+                setLogado(false);
+        }
+        usuarioLogado();
+    }, [path]);
+
+    if (!logado) return (<LoginPage />);
 
     return (
         <div className="flex flex-col h-screen max-h-screen">
@@ -24,7 +37,6 @@ const Pagina = React.memo((props: any) => {
                 </main>
             </div>
             <Rodape />
-            <TokenValidator />
         </div>
     );
 });

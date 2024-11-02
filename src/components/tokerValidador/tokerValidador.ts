@@ -1,30 +1,19 @@
 'use clientt'
-import { useUserContext } from '@/context/usuarioContext';
-import jwtTokenServico from '@/service/jwt/jwtTokenServico';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import validarToken from './utils/validarToken';
 
-const TokenValidator = () => {
-    const { setLogado } = useUserContext();
+const TokenValidator = async () => {
 
-    const router = useRouter();
-
-    const validarToken = async () => {
-        try {
-            jwtTokenServico.validaToken();
-            var token = jwtTokenServico.obterToken();
-            if (token === null) {
-                setLogado(false);
-                router.push('/login');
-            }
-        } catch (error) {
-            setLogado(false);
-            router.push('/login');
-        }
-    };
+    const rota = useRouter();
+    const token = await validarToken();
+    const validaSituacaoUsuarioLogado = () => {
+        if (!token)
+            rota.push('/login')
+    }
 
     useEffect(() => {
-        const intervalId = setInterval(validarToken, 15 * 60 * 1000); // Verifica a cada 15 minutos
+        const intervalId = setInterval(validaSituacaoUsuarioLogado, 15 * 60 * 1000); // Verifica a cada 15 minutos
 
         return () => clearInterval(intervalId);
     }, []);

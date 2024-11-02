@@ -10,22 +10,16 @@ export const metadata: Metadata = {
   description: "Aprendendo Next e Nest",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="pt-BR">
       <body>
         <UserProvider>
-          <UserProvider>
-            <MenuProvider>
-              <Pagina>
-                {children}
-              </Pagina>
-            </MenuProvider >
-          </UserProvider>
+          <MenuProvider>
+            <Pagina>
+              {children}
+            </Pagina>
+          </MenuProvider>
         </UserProvider>
       </body>
     </html>
