@@ -4,7 +4,6 @@ import { PlusIcon } from "evergreen-ui";
 
 export default function Page() {
 
-
     return (
         <>
             <CabecalhoPaginaComBusca
