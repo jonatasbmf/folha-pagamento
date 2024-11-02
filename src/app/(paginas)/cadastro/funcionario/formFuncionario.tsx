@@ -1,7 +1,9 @@
+'use client'
 import InputMoeda from "@/components/inputs/inputMoeda";
 import InputTexto from "@/components/inputs/inputTexto";
+import ConfirmacaoModal from "@/components/modal/confirmacaoModal";
 import { Button, Pane, SelectField } from "evergreen-ui";
-import { SetStateAction } from "react";
+import { SetStateAction, useState } from "react";
 
 interface FormFuncionarioProps {
     id?: number;
@@ -19,6 +21,8 @@ interface FormFuncionarioProps {
 }
 
 export default function FormFuncionario(props: FormFuncionarioProps) {
+    const [modalAberto, setModalAberto] = useState<boolean>(false);
+
     const {
         id,
         nome,
@@ -33,8 +37,20 @@ export default function FormFuncionario(props: FormFuncionarioProps) {
         limparFormulario,
         apagar
     } = props;
+
     return (
         <>
+            <ConfirmacaoModal
+                textoModal="Confirma exclusão do funcionário?"
+                tituloModal="Excluir Funcionario"
+                modalAberto={modalAberto}
+                onClose={() => setModalAberto(false)}
+                onConfirm={() => {
+                    if (apagar) {
+                        apagar(id!);
+                    }
+                }}
+            />
             <Pane padding={16} background="tint2" borderRadius={3}>
                 <input style={{ display: 'none' }} type="number" disabled value={id} />
                 <InputTexto
@@ -87,7 +103,7 @@ export default function FormFuncionario(props: FormFuncionarioProps) {
                         Limpar
                     </Button>
                     {id ? (<Button marginRight={16}
-                        onClick={id && apagar ? () => apagar(+id) : undefined}
+                        onClick={id && apagar ? () => setModalAberto(true) : undefined}
                         intent="danger">
                         Excluir
                     </Button>) : null}

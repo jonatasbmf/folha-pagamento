@@ -1,7 +1,9 @@
+'use client'
 import InputEmail from "@/components/inputs/inputEmail";
 import InputTexto, { InputTextoRef } from "@/components/inputs/inputTexto";
+import ConfirmacaoModal from "@/components/modal/confirmacaoModal";
 import { Button, Pane } from "evergreen-ui";
-import { SetStateAction, useRef } from "react";
+import { SetStateAction, useRef, useState } from "react";
 
 interface FormEmpresaProps {
     id?: number;
@@ -18,6 +20,8 @@ interface FormEmpresaProps {
 }
 
 export default function FormEmpresa(props: FormEmpresaProps) {
+    const [modalAberto, setModalAberto] = useState<boolean>(false);
+
     const {
         id,
         nome,
@@ -38,6 +42,18 @@ export default function FormEmpresa(props: FormEmpresaProps) {
 
     return (
         <>
+            <ConfirmacaoModal
+                textoModal="Confirma exclusão da empresa?"
+                tituloModal="Excluir empresa"
+                modalAberto={modalAberto}
+                onClose={() => setModalAberto(false)}
+                onConfirm={() => {
+                    if (apagarEmpresa) {
+                        apagarEmpresa(id!);
+                    }
+                }}
+            />
+
             <Pane padding={16} background="tint2" borderRadius={3}>
                 <input style={{ display: 'none' }} type="number" disabled value={id} />
                 <InputTexto
@@ -82,7 +98,7 @@ export default function FormEmpresa(props: FormEmpresaProps) {
                         Limpar
                     </Button>
                     {id ? (<Button marginRight={16}
-                        onClick={id && apagarEmpresa ? () => apagarEmpresa(id) : undefined}
+                        onClick={id && apagarEmpresa ? () => setModalAberto(true) : undefined}
                         intent="danger">
                         Excluir
                     </Button>) : null}

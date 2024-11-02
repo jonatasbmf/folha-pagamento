@@ -1,5 +1,6 @@
 "use client"
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
+import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table } from "evergreen-ui";
@@ -46,7 +47,7 @@ export default function Page() {
                         funcionarios.map((funcionario) => (
                             <Table.Row height={40} paddingX={10} key={funcionario.id} isSelectable onSelect={() => irParaPagina(`funcionario/${funcionario.id!}`)}>
                                 <Table.TextCell>{funcionario.nome}</Table.TextCell>
-                                <Table.TextCell>{funcionario.salario}</Table.TextCell>
+                                <Table.TextCell>{converterFloatParaMoedaString(funcionario.salario)}</Table.TextCell>
                                 <Table.TextCell>{funcionario.empresa?.nome}</Table.TextCell>
                             </Table.Row>
                         ))

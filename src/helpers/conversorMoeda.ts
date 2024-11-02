@@ -2,11 +2,12 @@ const converterMoedaStringParaFloat = (moeda: string): number => {
     return parseFloat(moeda.replace(/[^\d,-]/g, '').replace(',', '.'));
 }
 
-const converterFloatParaMoedaString = (valor: number): string => {
-    return valor.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    });
+const converterFloatParaMoedaString = (valor: any): string => {
+    const numero = parseFloat(valor);
+    if (isNaN(numero)) {
+        throw new Error("Valor não é um número válido");
+    }
+    return `R$ ${numero.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
 }
 
 export {

@@ -16,13 +16,15 @@ const Pagina = React.memo((props: any) => {
     const path = usePathname();
 
     useEffect(() => {
-        const usuarioLogado = async () => {
-            const usuarioLogado = await validarToken();
-            if (!usuarioLogado)
-                setLogado(false);
-        }
         usuarioLogado();
     }, [path]);
+
+    const usuarioLogado = async () => {
+        const usuarioLogado = await validarToken();
+        if (!usuarioLogado)
+            setLogado(false);
+        setLogado(true);
+    }
 
     if (!logado) return (<LoginPage />);
 
