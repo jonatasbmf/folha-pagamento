@@ -1,4 +1,4 @@
-import empresa_service from "@/service/module/empresa-service/empresaService";
+import empresa_service from "@/service/module/empresaService/empresaService";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
