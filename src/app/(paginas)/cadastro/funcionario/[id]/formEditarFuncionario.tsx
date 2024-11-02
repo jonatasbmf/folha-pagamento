@@ -1,5 +1,4 @@
 'use client'
-
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
@@ -40,6 +39,7 @@ export default function FormEditarFuncionario() {
     return (
         <>
             <FormFuncionario
+                id={id}
                 nome={nome}
                 setNome={setNome}
                 salarioString={salarioString}

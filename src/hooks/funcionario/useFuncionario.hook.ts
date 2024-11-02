@@ -1,3 +1,4 @@
+import { converterFloatParaMoedaString, converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
 import funcionario_service from "@/service/module/funcionario-service/funcionario-service";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -22,11 +23,11 @@ export const useFuncionario = () => {
     const salvar = async () => {
         const novoFuncionario = {
             nome,
-            salario,
+            salario: converterMoedaStringParaFloat(salarioString),
             empresaId
         }
 
-        if (!validarFuncionario(nome, salario, empresaId)) {
+        if (!validarFuncionario(novoFuncionario.nome, novoFuncionario.salario, novoFuncionario.empresaId)) {
             toast.error("Não foi possível salvar um novo funcionário");
             return;
         }
@@ -47,11 +48,11 @@ export const useFuncionario = () => {
         const atualizarFuncionario = {
             id,
             nome,
-            salario,
+            salario: converterMoedaStringParaFloat(salarioString),
             empresaId
         }
 
-        if (!validarFuncionario(nome, salario, empresaId)) {
+        if (!validarFuncionario(atualizarFuncionario.nome, atualizarFuncionario.salario, atualizarFuncionario.empresaId)) {
             toast.error("Não foi possível salvar um novo funcionário");
             return;
         }
@@ -141,8 +142,11 @@ export const useFuncionario = () => {
             if (funcionarioResponse.status !== 200) {
                 toast.error("Nâo foi possivel buscar funcionário.")
             }
-
-            setFuncionario(funcionarioResponse.data)
+            var funcionario = funcionarioResponse.data;
+            setNome(funcionario.nome);
+            setId(funcionario.id);
+            setEmpresaId(funcionario.empresaId);
+            setSalarioString(converterFloatParaMoedaString(funcionario.salario));
         } catch (error) {
             console.error(error);
             toast.error("Nâo foi possivel buscar funcionário.")
