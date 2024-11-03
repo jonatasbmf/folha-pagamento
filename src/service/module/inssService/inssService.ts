@@ -11,7 +11,7 @@ const atualizar = async (inss: Inss) => {
     return await api_back.patch(`/inss/${inss.id}`, inss);
 }
 
-const deletar = async (id: number) => {
+const excluir = async (id: number) => {
     // DELETE http://localhost:4001/inss/7
     return await api_back.delete(`/inss/${id}`);
 }
@@ -35,3 +35,15 @@ const buscarPorAnoDistinto = async () => {
     // GET http://localhost:4001/inss/anos-distintos
     return await api_back.get(`/inss/anos-distintos`);
 }
+
+const inssService = {
+    inserir,
+    atualizar,
+    excluir,
+    listarTodos,
+    buscarPorId,
+    buscarPorAno,
+    buscarPorAnoDistinto,
+}
+
+export default inssService;

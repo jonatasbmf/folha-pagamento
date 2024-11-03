@@ -23,7 +23,8 @@ const Pagina = React.memo((props: any) => {
         const usuarioLogado = await validarToken();
         if (!usuarioLogado)
             setLogado(false);
-        setLogado(true);
+        else
+            setLogado(true);
     }
 
     if (!logado) return (<LoginPage />);

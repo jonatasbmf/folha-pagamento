@@ -28,7 +28,7 @@ export const UserProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
             setNome(usuario.nome || "");
             setEmail(usuario.email || "");
         } else {
-            router.push('/login');
+            setLogado(false);
         }
     }, [router]);
 
