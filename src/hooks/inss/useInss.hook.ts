@@ -1,3 +1,4 @@
+import { converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
 import { Inss } from "@/interface/Inss";
 import inssService from "@/service/module/inssService/inssService";
 import { useState } from "react";
@@ -8,8 +9,11 @@ const useInss = () => {
     const [id, setId] = useState(0);
     const [ano, setAno] = useState(0);
     const [faixaMin, setFaixaMin] = useState(0);
+    const [faixaMinString, setFaixaMinString] = useState('');
     const [faixaMax, setFaixaMax] = useState(0);
+    const [faixaMaxString, setFaixaMaxString] = useState('');
     const [aliquota, setAliquota] = useState(0);
+    const [aliquotaString, setAliquotaString] = useState('');
     const [listaInss, setListaInss] = useState<Inss[]>([]);
     const [listaAno, setListaAno] = useState<AnoDto[]>([]);
     const [loading, setLoading] = useState(false);
@@ -18,9 +22,9 @@ const useInss = () => {
     const inserir = async () => {
         var inssNovo = {
             ano,
-            faixaMax,
-            faixaMin,
-            aliquota
+            faixaMax: converterMoedaStringParaFloat(faixaMaxString),
+            faixaMin: converterMoedaStringParaFloat(faixaMinString),
+            aliquota: converterMoedaStringParaFloat(aliquotaString)
         }
 
         if (!validarInss(ano, faixaMin, faixaMax, aliquota)) {
@@ -32,6 +36,7 @@ const useInss = () => {
             setLoading(true);
             await inssService.inserir(inssNovo);
             toast.success("Inss salvo com sucesso!");
+            limparFormulario();
         } catch (error) {
             console.error(error);
             toast.error("[catch] Não foi possível gravar o INSS. Verifique o log.");
@@ -44,9 +49,9 @@ const useInss = () => {
         var inssAtualizar = {
             id,
             ano,
-            faixaMax,
-            faixaMin,
-            aliquota
+            faixaMax: converterMoedaStringParaFloat(faixaMaxString),
+            faixaMin: converterMoedaStringParaFloat(faixaMinString),
+            aliquota: converterMoedaStringParaFloat(aliquotaString)
         }
 
         if (!validarInss(ano, faixaMin, faixaMax, aliquota)) {
@@ -60,7 +65,7 @@ const useInss = () => {
             toast.success("Inss atualizado com sucesso!");
         } catch (error) {
             console.error(error);
-            toast.error("[catch] Erro ao excluir o INSS. Verifique o log.");
+            toast.error("[catch] Erro ao atualizar o INSS. Verifique o log.");
         } finally {
             setLoading(false);
         }
@@ -71,6 +76,7 @@ const useInss = () => {
             setLoading(true);
             await inssService.excluir(id);
             toast.warn("Registro excluido com sucesso.");
+            limparFormulario();
         } catch (error) {
             console.error(error);
             toast.error("[catch] Erro ao excluir Inss. Verifique o log.")
@@ -158,6 +164,9 @@ const useInss = () => {
         setFaixaMin(0);
         setFaixaMax(0);
         setAliquota(0);
+        setFaixaMinString('');
+        setFaixaMaxString('');
+        setAliquotaString('');
     }
 
     return {
@@ -165,7 +174,10 @@ const useInss = () => {
         ano, setAno,
         faixaMin, setFaixaMin,
         faixaMax, setFaixaMax,
+        faixaMinString, setFaixaMinString,
+        faixaMaxString, setFaixaMaxString,
         aliquota, setAliquota,
+        aliquotaString, setAliquotaString,
         listaInss, setListaInss,
         listaAno, setListaAno,
         termo, setTermo,

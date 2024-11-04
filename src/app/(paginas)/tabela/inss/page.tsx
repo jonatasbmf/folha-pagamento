@@ -26,7 +26,7 @@ export default function Page() {
         <>
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de tabelas de aliquotas de INSS"
-                endPointBotao=""
+                endPointBotao="/tabela/inss/novo"
                 funcaoDeBusca={filtrarPorAno}
                 iconeBotao={PlusIcon}
                 labelBotao="Nova tabela"

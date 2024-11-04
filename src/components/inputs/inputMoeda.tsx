@@ -38,7 +38,7 @@ const
             const numericValue = converterMoedaStringParaFloat(value);
 
             if (required) {
-                if (isNaN(numericValue) || numericValue <= 0) {
+                if (isNaN(numericValue) || numericValue < 0) {
                     setValido(false);
                 } else {
                     setValido(true);

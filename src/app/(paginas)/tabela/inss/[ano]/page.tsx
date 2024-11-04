@@ -3,9 +3,10 @@ import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoP
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import useInss from "@/hooks/inss/useInss.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
+import { Inss } from "@/interface/Inss";
 import { FastBackwardIcon, Table, Text } from "evergreen-ui";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import FormInss from "../formInss";
 
 export default function Page() {
@@ -17,48 +18,59 @@ export default function Page() {
         listaInss,
         ano, setAno,
         id, setId,
-        aliquota, setAliquota,
-        faixaMin, setFaixaMin,
-        faixaMax, setFaixaMax,
+        faixaMinString, setFaixaMinString,
+        faixaMaxString, setFaixaMaxString,
+        aliquotaString, setAliquotaString,
         inserir, atualizar, excluir, limparFormulario
     } = useInss();
 
+    const [houveExclusao, setHouveExclusao] = useState(false);
+
     useEffect(() => {
         alimentarDadosTela()
-    }, []);
+    }, [houveExclusao]);
 
     const alimentarDadosTela = async () => {
         await buscarPorAno(Number(param.ano));
     }
 
+    const carregarFormEdicao = (inss: Inss): void => {
+        setId(inss.id!);
+        setAno(inss.ano);
+        setAliquotaString(inss.aliquota.toString());
+        setFaixaMinString(converterFloatParaMoedaString(inss.faixaMin));
+        setFaixaMaxString(converterFloatParaMoedaString(inss.faixaMax));
+    }
+
     return (
         <>
             <CabecalhoPaginaComNavegacao
-                labelCabecalho="Edição de Tabela de aliquotas de INSS por ano"
+                labelCabecalho="Edição de tabela de aliquotas de INSS por ano"
                 labelBotao="Voltar"
                 iconeBotao={FastBackwardIcon}
                 acaoBotao={voltarPaginaAnterior}
             />
             <div className="mb-5">
-                <Text >Selecione uma linha da tabela para edição!</Text>
-                <div className=" ">
+                {id ? (
                     <FormInss
                         id={id}
                         ano={ano}
-                        faixaMin={faixaMin}
-                        faixaMax={faixaMax}
-                        aliquota={aliquota}
+                        faixaMin={faixaMinString}
+                        faixaMax={faixaMaxString}
+                        aliquota={aliquotaString}
                         salvar={inserir}
                         atualizar={atualizar}
                         excluir={excluir}
                         limparFormulario={limparFormulario}
                         setAno={setAno}
-                        setFaixaMin={setFaixaMin}
-                        setFaixaMax={setFaixaMax}
-                        setAliquota={setAliquota}
-                    />
-                </div>
+                        setFaixaMin={setFaixaMinString}
+                        setFaixaMax={setFaixaMaxString}
+                        setAliquota={setAliquotaString}
+                        setHouveExclusao={setHouveExclusao}
+                    />) : null}
             </div>
+
+            <Text >Selecione uma linha da tabela para edição!</Text>
             <Table>
                 <Table.Head paddingX={10}>
                     <Table.TextHeaderCell>Ano</Table.TextHeaderCell>
@@ -73,7 +85,7 @@ export default function Page() {
                         </Table.Row>
                     ) : (
                         listaInss.map((aliquota) => (
-                            <Table.Row height={40} paddingX={10} key={aliquota.id} isSelectable onSelect={() => { }} >
+                            <Table.Row height={40} paddingX={10} key={aliquota.id} isSelectable onSelect={() => carregarFormEdicao(aliquota)} >
                                 <Table.TextCell>{aliquota.ano}</Table.TextCell>
                                 <Table.TextCell>{converterFloatParaMoedaString(aliquota.faixaMin)}</Table.TextCell>
                                 <Table.TextCell>{converterFloatParaMoedaString(aliquota.faixaMax)}</Table.TextCell>

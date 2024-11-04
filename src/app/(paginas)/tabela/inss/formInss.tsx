@@ -3,23 +3,24 @@ import InputMoeda from "@/components/inputs/inputMoeda";
 import InputNumeroDecimal from "@/components/inputs/InputNumeroDecimal";
 import ConfirmacaoModal from "@/components/modal/confirmacaoModal";
 import { Button, Pane, SelectField } from "evergreen-ui";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface FormInssProps {
     id?: number;
-    setId: () => {};
+    setId?: () => {};
     ano: number;
     setAno: (value: number) => void;
-    faixaMin: number;
-    setFaixaMin: (value: number) => {};
-    faixaMax: number;
-    setFaixaMax: (value: number) => {};
-    aliquota: number;
-    setAliquota: (value: number) => {};
+    faixaMin: string;
+    setFaixaMin: Dispatch<SetStateAction<string>>;
+    faixaMax: string;
+    setFaixaMax: Dispatch<SetStateAction<string>>;
+    aliquota: string;
+    setAliquota: Dispatch<SetStateAction<string>>;
     salvar: () => {};
     atualizar?: () => {};
     excluir?: (value: number) => {};
     limparFormulario: () => {}
+    setHouveExclusao: Dispatch<SetStateAction<boolean>>
 }
 
 export default function FormInss(props: FormInssProps) {
@@ -29,7 +30,9 @@ export default function FormInss(props: FormInssProps) {
         faixaMin, setFaixaMin,
         faixaMax, setFaixaMax,
         aliquota, setAliquota,
-        salvar, atualizar, excluir, limparFormulario
+        salvar, atualizar, excluir, limparFormulario,
+        setHouveExclusao
+
     } = props;
 
     const [anos, setAnos] = useState<Number[]>([]);
@@ -45,7 +48,7 @@ export default function FormInss(props: FormInssProps) {
         for (let i = anoAtual - 5; i <= anoAtual + 1; i++) {
             anos.push(i);
         }
-        return anos;
+        return anos.sort((a, b) => b - a);;
     }
 
     return (
@@ -57,7 +60,9 @@ export default function FormInss(props: FormInssProps) {
                 onClose={() => setModalAberto(false)}
                 onConfirm={() => {
                     if (excluir) {
+                        setHouveExclusao(true);
                         excluir(id!);
+                        setModalAberto(false);
                     }
                 }}
             />
@@ -105,7 +110,7 @@ export default function FormInss(props: FormInssProps) {
                         required
                         placeholder="0.87"
                     />
-                    <div className="flex justify-end gap-2">
+                    <div className="flex items-center justify-end gap-2">
                         <Button marginRight={16}
                             onClick={id ? atualizar : salvar}
                             intent="success"
