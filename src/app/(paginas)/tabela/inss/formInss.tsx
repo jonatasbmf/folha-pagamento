@@ -16,11 +16,10 @@ interface FormInssProps {
     setFaixaMax: Dispatch<SetStateAction<string>>;
     aliquota: string;
     setAliquota: Dispatch<SetStateAction<string>>;
-    salvar: () => {};
+    salvar?: () => {};
     atualizar?: () => {};
     excluir?: (value: number) => {};
     limparFormulario: () => {}
-    setHouveExclusao: Dispatch<SetStateAction<boolean>>
 }
 
 export default function FormInss(props: FormInssProps) {
@@ -31,8 +30,6 @@ export default function FormInss(props: FormInssProps) {
         faixaMax, setFaixaMax,
         aliquota, setAliquota,
         salvar, atualizar, excluir, limparFormulario,
-        setHouveExclusao
-
     } = props;
 
     const [anos, setAnos] = useState<Number[]>([]);
@@ -60,7 +57,6 @@ export default function FormInss(props: FormInssProps) {
                 onClose={() => setModalAberto(false)}
                 onConfirm={() => {
                     if (excluir) {
-                        setHouveExclusao(true);
                         excluir(id!);
                         setModalAberto(false);
                     }

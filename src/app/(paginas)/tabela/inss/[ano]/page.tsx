@@ -42,6 +42,16 @@ export default function Page() {
         setFaixaMaxString(converterFloatParaMoedaString(inss.faixaMax));
     }
 
+    const atulizarAtualizarGrid = async () => {
+        await atualizar();
+        await alimentarDadosTela();
+    }
+
+    const excluirAtualizarGrid = async () => {
+        await excluir(id);
+        await alimentarDadosTela();
+    }
+
     return (
         <>
             <CabecalhoPaginaComNavegacao
@@ -58,15 +68,13 @@ export default function Page() {
                         faixaMin={faixaMinString}
                         faixaMax={faixaMaxString}
                         aliquota={aliquotaString}
-                        salvar={inserir}
-                        atualizar={atualizar}
-                        excluir={excluir}
+                        atualizar={atulizarAtualizarGrid}
+                        excluir={excluirAtualizarGrid}
                         limparFormulario={limparFormulario}
                         setAno={setAno}
                         setFaixaMin={setFaixaMinString}
                         setFaixaMax={setFaixaMaxString}
                         setAliquota={setAliquotaString}
-                        setHouveExclusao={setHouveExclusao}
                     />) : null}
             </div>
 

@@ -5,7 +5,7 @@ import useInss from "@/hooks/inss/useInss.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { Inss } from "@/interface/Inss";
 import { FastBackwardIcon, Table, Text } from "evergreen-ui";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormInss from "../formInss";
 
 export default function Page() {
@@ -22,12 +22,6 @@ export default function Page() {
         inserir, atualizar, excluir, limparFormulario
     } = useInss();
 
-    const [houveExclusao, setHouveExclusao] = useState(false);
-
-    useEffect(() => {
-        alimentarDadosTela()
-    }, [houveExclusao]);
-
     const alimentarDadosTela = async () => {
         await buscarPorAno(anoReferencia);
     }
@@ -37,7 +31,14 @@ export default function Page() {
         setAnoReferencia(ano);
         await inserir();
         setAno(anoReferencia);
-        setHouveExclusao(true);
+        await alimentarDadosTela();
+    }
+
+    const excluirAtualizarGrid = async () => {
+        setAnoReferencia(ano);
+        await excluir(id);
+        setAno(anoReferencia);
+        await alimentarDadosTela();
     }
 
     const carregarFormEdicao = (inss: Inss): void => {
@@ -65,13 +66,12 @@ export default function Page() {
                     aliquota={aliquotaString}
                     salvar={salvar}
                     atualizar={atualizar}
-                    excluir={excluir}
+                    excluir={excluirAtualizarGrid}
                     limparFormulario={limparFormulario}
                     setAno={setAno}
                     setFaixaMin={setFaixaMinString}
                     setFaixaMax={setFaixaMaxString}
                     setAliquota={setAliquotaString}
-                    setHouveExclusao={setHouveExclusao}
                 />
             </div>
 
