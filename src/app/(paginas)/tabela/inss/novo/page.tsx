@@ -20,11 +20,11 @@ export default function Page() {
         aliquotaString, setAliquotaString,
         inserir, atualizar, excluir, limparFormulario
     } = useInss();
+    const [anoReferencia, setAnoReferencia] = useState(0);
 
     const alimentarDadosTela = async () => {
         await buscarPorAno(anoReferencia);
     }
-    const [anoReferencia, setAnoReferencia] = useState(0);
 
     const salvar = async () => {
         setAnoReferencia(ano);

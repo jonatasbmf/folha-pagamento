@@ -21,17 +21,17 @@ export default function Page() {
         deducaoString, setDeducaoString,
         inserir, atualizar, excluir, limparFormulario
     } = useIrrf();
+    const [anoReferencia, setAnoReferencia] = useState(0);
 
     const alimentarDadosTela = async () => {
         await buscarPorAno(anoReferencia);
     }
-    const [anoReferencia, setAnoReferencia] = useState(0);
 
     const salvar = async () => {
         setAnoReferencia(ano);
         await inserir();
-        await alimentarDadosTela();
         setAno(anoReferencia);
+        await alimentarDadosTela();
     }
 
     const excluirAtualizarGrid = async () => {
