@@ -1,12 +1,11 @@
 "use client"
-import { Heading, HomeIcon, ListItem, OrderedList, Pane, Text } from "evergreen-ui";
+import { Heading, ListItem, OrderedList, Pane, Text } from "evergreen-ui";
 
 export default function Home() {
   return (
     <>
       <div className="mb-5">
         <div className="flex flex-1 items-center gap-4 mb-3">
-          <HomeIcon />
           <Heading size={600}> Home</Heading>
         </div>
         <Pane padding={16} background="tint2" borderRadius={3}>

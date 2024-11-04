@@ -57,12 +57,17 @@ const decodificarToken = (): TokenDecodificado | null => {
   return null;
 };
 
+const removerToken = () => {
+  localStorage.removeItem('auth_token');
+}
+
 const jwtTokenServico = {
   obterDadosUsuario,
   tokenEstaExpirado,
   obterToken,
   gravarToken,
-  validaToken
+  validaToken,
+  removerToken
 };
 
 export default jwtTokenServico;

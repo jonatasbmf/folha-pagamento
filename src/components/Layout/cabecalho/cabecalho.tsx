@@ -1,6 +1,7 @@
 import BotaoMenu from "@/components/botaoMenu/botaoMenu";
+import BotaoOpcoes from "@/components/botaoMenu/botaoOpcoes";
 import { useUserContext } from "@/context/usuarioContext";
-import { IconBrandCashapp, IconUserCircle } from "@tabler/icons-react";
+import { IconBrandCashapp } from "@tabler/icons-react";
 
 export default function Cabecalho() {
     const { nome } = useUserContext();
@@ -18,9 +19,10 @@ export default function Cabecalho() {
             </div>
             <div className="flex items-center gap-5 px-3">
                 <div>{nome ?? nome}</div>
-                <div>
-                    <IconUserCircle />
+                <div className="px-3">
+                    <BotaoOpcoes />
                 </div>
             </div>
-        </div >)
+        </div >
+    )
 }
