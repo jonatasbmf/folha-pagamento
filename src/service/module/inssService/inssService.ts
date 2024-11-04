@@ -1,4 +1,3 @@
-import { Inss } from "@/interface/Inss";
 import { api_back } from "@/service/api/api";
 
 const inserir = async (inss: Inss) => {

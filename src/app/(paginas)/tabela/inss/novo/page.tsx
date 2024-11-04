@@ -3,7 +3,6 @@ import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoP
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import useInss from "@/hooks/inss/useInss.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
-import { Inss } from "@/interface/Inss";
 import { FastBackwardIcon, Table, Text } from "evergreen-ui";
 import { useState } from "react";
 import FormInss from "../formInss";

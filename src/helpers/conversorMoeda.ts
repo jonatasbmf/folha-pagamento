@@ -5,7 +5,7 @@ const converterMoedaStringParaFloat = (moeda: string): number => {
 const converterFloatParaMoedaString = (valor: any): string => {
     const numero = parseFloat(valor);
     if (isNaN(numero)) {
-        throw new Error("Valor não é um número válido");
+        return '';
     }
     return `R$ ${numero.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
 }

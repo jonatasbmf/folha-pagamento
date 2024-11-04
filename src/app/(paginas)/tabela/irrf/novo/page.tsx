@@ -1,80 +1,81 @@
 'use client'
 import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoPaginaNavegacao";
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
-import useInss from "@/hooks/inss/useInss.hook";
+import useIrrf from "@/hooks/irrf/useIrrf.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { FastBackwardIcon, Table, Text } from "evergreen-ui";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import FormInss from "../formInss";
+import { useState } from "react";
+import FormIrrf from "../formIrrf";
 
 export default function Page() {
-    const param = useParams<{ ano: string }>()
     const { voltarPaginaAnterior } = useNavegacao();
 
     const {
         buscarPorAno,
-        listaInss,
+        listaIrrf,
         ano, setAno,
         id, setId,
         faixaMinString, setFaixaMinString,
         faixaMaxString, setFaixaMaxString,
         aliquotaString, setAliquotaString,
-        atualizar, excluir, limparFormulario
-    } = useInss();
-
-    const [houveExclusao, setHouveExclusao] = useState(false);
-
-    useEffect(() => {
-        alimentarDadosTela()
-    }, [houveExclusao]);
+        deducaoString, setDeducaoString,
+        inserir, atualizar, excluir, limparFormulario
+    } = useIrrf();
 
     const alimentarDadosTela = async () => {
-        await buscarPorAno(Number(param.ano));
+        await buscarPorAno(anoReferencia);
     }
+    const [anoReferencia, setAnoReferencia] = useState(0);
 
-    const carregarFormEdicao = (inss: Inss): void => {
-        setId(inss.id!);
-        setAno(inss.ano);
-        setAliquotaString(inss.aliquota.toString());
-        setFaixaMinString(converterFloatParaMoedaString(inss.faixaMin));
-        setFaixaMaxString(converterFloatParaMoedaString(inss.faixaMax));
-    }
-
-    const atulizarAtualizarGrid = async () => {
-        await atualizar();
+    const salvar = async () => {
+        setAnoReferencia(ano);
+        await inserir();
         await alimentarDadosTela();
+        setAno(anoReferencia);
     }
 
     const excluirAtualizarGrid = async () => {
+        setAnoReferencia(ano);
         await excluir(id);
+        setAno(anoReferencia);
         await alimentarDadosTela();
+    }
+
+    const carregarFormEdicao = (irrf: Irrf): void => {
+        setId(irrf.id!);
+        setAno(irrf.ano);
+        setAliquotaString(irrf.aliquota.toString());
+        setFaixaMinString(converterFloatParaMoedaString(irrf.faixaMin));
+        setFaixaMaxString(converterFloatParaMoedaString(irrf.faixaMax));
+        setDeducaoString(converterFloatParaMoedaString(irrf.deducao));
     }
 
     return (
         <>
             <CabecalhoPaginaComNavegacao
-                labelCabecalho="Edição de tabela de aliquotas de INSS por ano"
+                labelCabecalho="Inclusão de tabela de aliquotas de IRRF por ano"
                 labelBotao="Voltar"
                 iconeBotao={FastBackwardIcon}
                 acaoBotao={voltarPaginaAnterior}
             />
             <div className="mb-5">
-                {id ? (
-                    <FormInss
-                        id={id}
-                        ano={ano}
-                        faixaMin={faixaMinString}
-                        faixaMax={faixaMaxString}
-                        aliquota={aliquotaString}
-                        atualizar={atulizarAtualizarGrid}
-                        excluir={excluirAtualizarGrid}
-                        limparFormulario={limparFormulario}
-                        setAno={setAno}
-                        setFaixaMin={setFaixaMinString}
-                        setFaixaMax={setFaixaMaxString}
-                        setAliquota={setAliquotaString}
-                    />) : null}
+                <FormIrrf
+                    id={id}
+                    ano={ano}
+                    faixaMin={faixaMinString}
+                    faixaMax={faixaMaxString}
+                    aliquota={aliquotaString}
+                    salvar={salvar}
+                    atualizar={atualizar}
+                    excluir={excluirAtualizarGrid}
+                    limparFormulario={limparFormulario}
+                    setAno={setAno}
+                    setFaixaMin={setFaixaMinString}
+                    setFaixaMax={setFaixaMaxString}
+                    setAliquota={setAliquotaString}
+                    setDeducao={setDeducaoString}
+                    deducao={deducaoString}
+                />
             </div>
 
             <Text >Selecione uma linha da tabela para edição!</Text>
@@ -84,19 +85,21 @@ export default function Page() {
                     <Table.TextHeaderCell>Faixa Mínima</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Faixa Máxima</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Aliquota</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Dedução</Table.TextHeaderCell>
                 </Table.Head>
                 <Table.Body height={240}>
-                    {listaInss.length === 0 ? (
+                    {listaIrrf.length === 0 ? (
                         <Table.Row>
                             <Table.Cell>Nenhum aliquota cadastrada!</Table.Cell>
                         </Table.Row>
                     ) : (
-                        listaInss.map((aliquota) => (
+                        listaIrrf.map((aliquota) => (
                             <Table.Row height={40} paddingX={10} key={aliquota.id} isSelectable onSelect={() => carregarFormEdicao(aliquota)} >
                                 <Table.TextCell>{aliquota.ano}</Table.TextCell>
                                 <Table.TextCell>{converterFloatParaMoedaString(aliquota.faixaMin)}</Table.TextCell>
                                 <Table.TextCell>{converterFloatParaMoedaString(aliquota.faixaMax)}</Table.TextCell>
                                 <Table.TextCell>{aliquota.aliquota}</Table.TextCell>
+                                <Table.TextCell>{aliquota.deducao}</Table.TextCell>
                             </Table.Row>
                         ))
                     )}
