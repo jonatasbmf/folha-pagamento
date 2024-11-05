@@ -21,7 +21,7 @@ const useIrrf = () => {
     const [termo, setTermo] = useState('');
 
     const inserir = async () => {
-        var irrfNovo = {
+        const irrfNovo = {
             ano,
             faixaMax: converterMoedaStringParaFloat(faixaMaxString),
             faixaMin: converterMoedaStringParaFloat(faixaMinString),
@@ -48,7 +48,7 @@ const useIrrf = () => {
     }
 
     const atualizar = async () => {
-        var irrfAtualizar = {
+        const irrfAtualizar = {
             id,
             ano,
             faixaMax: converterMoedaStringParaFloat(faixaMaxString),

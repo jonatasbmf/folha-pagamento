@@ -1,5 +1,4 @@
 import { converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
-import { Inss } from "@/interface/Inss";
 import inssService from "@/service/module/inssService/inssService";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -20,7 +19,7 @@ const useInss = () => {
     const [termo, setTermo] = useState('');
 
     const inserir = async () => {
-        var inssNovo = {
+        const inssNovo = {
             ano,
             faixaMax: converterMoedaStringParaFloat(faixaMaxString),
             faixaMin: converterMoedaStringParaFloat(faixaMinString),
@@ -39,14 +38,14 @@ const useInss = () => {
             limparFormulario();
         } catch (error) {
             console.error(error);
-            toast.error("[catch] Não foi possível gravar o INSS. Verifique o log.");
+            toast.error("[catch] Não foi possível graconst o INSS. Verifique o log.");
         } finally {
             setLoading(false);
         }
     }
 
     const atualizar = async () => {
-        var inssAtualizar = {
+        const inssAtualizar = {
             id,
             ano,
             faixaMax: converterMoedaStringParaFloat(faixaMaxString),

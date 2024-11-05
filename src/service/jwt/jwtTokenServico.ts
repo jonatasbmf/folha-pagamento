@@ -42,14 +42,14 @@ const tokenEstaExpirado = (): boolean => {
 };
 
 const validaToken = () => {
-  var tokenExpirado = tokenEstaExpirado();
+  const tokenExpirado = tokenEstaExpirado();
 
   if (tokenExpirado)
     localStorage.removeItem('auth_token');
 }
 
 const decodificarToken = (): TokenDecodificado | null => {
-  let jwtToken = obterToken();
+  const jwtToken = obterToken();
 
   if (jwtToken)
     return jwtDecode(jwtToken);

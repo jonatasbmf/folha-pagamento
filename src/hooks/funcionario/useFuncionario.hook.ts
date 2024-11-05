@@ -136,13 +136,13 @@ export const useFuncionario = () => {
     const buscarPorId = async (id: number) => {
         try {
             setLoading(true);
-            var funcionarioResponse = await funcionario_service.buscaPorId(id);
+            const funcionarioResponse = await funcionario_service.buscaPorId(id);
             listarEmpresas();
 
             if (funcionarioResponse.status !== 200) {
                 toast.error("Nâo foi possivel buscar funcionário.")
             }
-            var funcionario = funcionarioResponse.data;
+            const funcionario = funcionarioResponse.data;
             setNome(funcionario.nome);
             setId(funcionario.id);
             setEmpresaId(funcionario.empresaId);

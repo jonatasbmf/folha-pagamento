@@ -59,7 +59,7 @@ export const useEditarEmpresa = () => {
             toast.error("Preencha corretamente o formulário.")
             return;
         }
-        var empresa: Empresa = {
+        const empresa: Empresa = {
             id: id,
             nome: nome,
             razaoSocial: razaoSocial,

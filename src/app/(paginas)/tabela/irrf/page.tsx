@@ -2,7 +2,7 @@
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
 import useIrrf from "@/hooks/irrf/useIrrf.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
-import { PlusIcon, Table } from "evergreen-ui";
+import { PlusIcon, Table, Text } from "evergreen-ui";
 import { useEffect } from "react";
 
 export default function Page() {
@@ -42,7 +42,11 @@ export default function Page() {
                 <Table.Body height={240}>
                     {listaAno.length === 0 ? (
                         <Table.Row>
-                            <Table.Cell>Nenhuma tabela de INSS cadastrada!</Table.Cell>
+                            <Table.Cell>
+                                <Text>
+                                    Nenhuma tabela de INSS cadastrada!
+                                </Text>
+                            </Table.Cell>
                         </Table.Row>
                     ) : (
                         listaAno.map((ano) => (
