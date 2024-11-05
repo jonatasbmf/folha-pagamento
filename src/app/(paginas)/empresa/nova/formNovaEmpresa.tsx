@@ -1,8 +1,11 @@
+import Loading from "@/components/loading/loading";
 import { useNovaEmpresa } from "../../../../hooks/empresa/useNovaEmpresa.hook";
 import FormEmpresa from "../formEmpresa";
 
 export function FormNovaEmpresa() {
-    const { nome,
+    const {
+        loading,
+        nome,
         razaoSocial,
         email,
         setNome,
@@ -14,6 +17,7 @@ export function FormNovaEmpresa() {
 
     return (
         <div>
+            {loading && <Loading />}
             <FormEmpresa
                 nome={nome}
                 razaoSocial={razaoSocial}

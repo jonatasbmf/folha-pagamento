@@ -1,5 +1,6 @@
 "use client"
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
+import Loading from "@/components/loading/loading";
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
@@ -7,7 +8,12 @@ import { PlusIcon, Table } from "evergreen-ui";
 import { useEffect } from "react";
 
 export default function Page() {
-    const { termo, setTermo, buscarPorNome, loading, listarTodos,
+    const {
+        termo,
+        setTermo,
+        buscarPorNome,
+        loading,
+        listarTodos,
         funcionarios
     } = useFuncionario();
 
@@ -20,6 +26,7 @@ export default function Page() {
 
     return (
         <>
+            {loading && <Loading />}
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de Funcionários"
                 labelBotao="Novo funcionário"

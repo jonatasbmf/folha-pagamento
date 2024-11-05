@@ -1,5 +1,6 @@
 'use client'
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
+import Loading from "@/components/loading/loading";
 import useIrrf from "@/hooks/irrf/useIrrf.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table, Text } from "evergreen-ui";
@@ -24,6 +25,7 @@ export default function Page() {
 
     return (
         <>
+            {loading && <Loading />}
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de tabelas de aliquotas de IRRF"
                 endPointBotao="/tabela/irrf/novo"

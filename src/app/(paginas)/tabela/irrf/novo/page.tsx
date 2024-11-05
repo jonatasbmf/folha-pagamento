@@ -1,5 +1,6 @@
 'use client'
 import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoPaginaNavegacao";
+import Loading from "@/components/loading/loading";
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import useIrrf from "@/hooks/irrf/useIrrf.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
@@ -11,6 +12,7 @@ export default function Page() {
     const { voltarPaginaAnterior } = useNavegacao();
 
     const {
+        loading,
         buscarPorAno,
         listaIrrf,
         ano, setAno,
@@ -52,6 +54,7 @@ export default function Page() {
 
     return (
         <>
+            {loading && <Loading />}
             <CabecalhoPaginaComNavegacao
                 labelCabecalho="Inclusão de tabela de aliquotas de IRRF por ano"
                 labelBotao="Voltar"

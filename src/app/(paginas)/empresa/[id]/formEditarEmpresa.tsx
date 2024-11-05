@@ -1,3 +1,4 @@
+import Loading from "@/components/loading/loading";
 import { useEffect } from "react";
 import { useEditarEmpresa } from "../../../../hooks/empresa/useEditarEmpresa.hook";
 import FormEmpresa from "../formEmpresa";
@@ -5,6 +6,7 @@ import FormEmpresa from "../formEmpresa";
 export function FormEditarEmpresa() {
 
     const {
+        loading,
         id,
         nome,
         razaoSocial,
@@ -24,6 +26,7 @@ export function FormEditarEmpresa() {
 
     return (
         <div>
+            {loading && <Loading />}
             <FormEmpresa
                 id={id}
                 nome={nome}

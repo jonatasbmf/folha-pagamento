@@ -1,5 +1,6 @@
 'use client'
 import CabecalhoPaginaComNavegacao from "@/components/cabecalhoPagina/cabecalhoPaginaNavegacao";
+import Loading from "@/components/loading/loading";
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import useInss from "@/hooks/inss/useInss.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
@@ -13,6 +14,7 @@ export default function Page() {
     const { voltarPaginaAnterior } = useNavegacao();
 
     const {
+        loading,
         buscarPorAno,
         listaInss,
         ano, setAno,
@@ -53,6 +55,7 @@ export default function Page() {
 
     return (
         <>
+            {loading && <Loading />}
             <CabecalhoPaginaComNavegacao
                 labelCabecalho="Edição de tabela de aliquotas de INSS por ano"
                 labelBotao="Voltar"

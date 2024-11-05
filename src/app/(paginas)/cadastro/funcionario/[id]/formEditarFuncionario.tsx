@@ -1,4 +1,5 @@
 'use client'
+import Loading from "@/components/loading/loading";
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
@@ -6,24 +7,17 @@ import FormFuncionario from "../formFuncionario";
 
 export default function FormEditarFuncionario() {
     const {
-        id, setId,
+        id,
         nome, setNome,
-        salario, setSalario,
         salarioString, setSalarioString,
         empresaId, setEmpresaId,
-        funcionarios, setFuncionarios,
-        termo, setTermo,
         loading,
-        salvar,
         atualizar,
         apagar,
-        listarTodos,
-        buscarPorNome,
         listarEmpresas,
         empresas,
         limparFormulario,
         buscarPorId,
-        funcionario
     } = useFuncionario();
 
     const param = useParams<{ id: string }>()
@@ -38,6 +32,7 @@ export default function FormEditarFuncionario() {
 
     return (
         <>
+            {loading && <Loading />}
             <FormFuncionario
                 id={id}
                 nome={nome}

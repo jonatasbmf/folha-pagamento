@@ -1,5 +1,6 @@
 "use client"
 import CabecalhoPaginaComBusca from "@/components/cabecalhoPagina/cabecalhoPaginaComBusca";
+import Loading from "@/components/loading/loading";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table } from "evergreen-ui";
 import { useEffect } from "react";
@@ -23,6 +24,7 @@ export default function Page() {
 
     return (
         <>
+            {loading && <Loading />}
             <CabecalhoPaginaComBusca
                 labelCabecalho="Listagem de empresas"
                 endPointBotao="/empresa/nova"
