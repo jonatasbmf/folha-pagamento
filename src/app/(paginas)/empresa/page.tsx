@@ -49,7 +49,7 @@ export default function Page() {
                         empresas.map((empresa) => (
                             <Table.Row height={40} paddingX={10} key={empresa.id} isSelectable onSelect={() => irParaPagina(`/empresa/${empresa.id!}`)}>
                                 <Table.TextCell>{empresa.nome}</Table.TextCell>
-                                <Table.TextCell>{empresa.razao_social}</Table.TextCell>
+                                <Table.TextCell>{empresa.razaoSocial}</Table.TextCell>
                             </Table.Row>
                         ))
                     )}

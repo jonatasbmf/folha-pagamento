@@ -76,7 +76,7 @@ export default function FormInss(props: FormInssProps) {
                         </option>
                         {anos ? anos.map(
                             (ano) => {
-                                return (<option value={ano.toString()} selected>
+                                return (<option key={ano.toString()} value={ano.toString()} selected>
                                     {ano.toString()}
                                 </option>)
                             }

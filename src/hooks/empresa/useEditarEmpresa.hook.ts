@@ -44,7 +44,7 @@ export const useEditarEmpresa = () => {
                 setId(empresaResponse.data.id)
                 setNome(empresaResponse.data.nome);
                 setEmail(empresaResponse.data.email);
-                setRazaoSocial(empresaResponse.data.razao_social)
+                setRazaoSocial(empresaResponse.data.razaoSocial)
             }
 
         } catch (error) {
@@ -62,7 +62,7 @@ export const useEditarEmpresa = () => {
         var empresa: Empresa = {
             id: id,
             nome: nome,
-            razao_social: razaoSocial,
+            razaoSocial: razaoSocial,
             email: email
         }
 

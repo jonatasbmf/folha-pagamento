@@ -53,18 +53,16 @@ const InputCelular = forwardRef<InputCelularRef, InputCelularProps>((props, ref)
             onChange={(e: { target: { value: string; }; }) => setValue(e.target.value)}
             onBlur={validarCampo}
         >
-            {() => (
-                <TextInputField
-                    isInvalid={!valido}
-                    disabled={disabled}
-                    required={required}
-                    label={label}
-                    description={description}
-                    placeholder={placeholder}
-                    validationMessage={!valido && validationMessage ? validationMessage : null}
-                    value={value}
-                />
-            )}
+            <TextInputField
+                isInvalid={!valido}
+                disabled={disabled}
+                required={required}
+                label={label}
+                description={description}
+                placeholder={placeholder}
+                validationMessage={!valido && validationMessage ? validationMessage : null}
+                value={value}
+            />
         </InputMask>
     );
 });

@@ -1,6 +1,6 @@
 interface Empresa {
     id?: number;
     nome: string;
-    razao_social: string;
+    razaoSocial: string;
     email: string;
 }

@@ -29,7 +29,7 @@ export const useNovaEmpresa = () => {
         }
         const novaEmpresa: Empresa = {
             nome: nome,
-            razao_social: razaoSocial,
+            razaoSocial: razaoSocial,
             email: email
         }
 
