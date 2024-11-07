@@ -2,7 +2,7 @@ import { converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
 import inssService from "@/service/module/inssService/inss.service";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import validarInss from "./helpers/validarInss";
+import validarInss from "./utils/validarInss";
 
 const useInss = () => {
     const [id, setId] = useState(0);
