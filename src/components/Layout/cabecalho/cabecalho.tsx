@@ -1,7 +1,7 @@
 import BotaoMenu from "@/components/botaoMenu/botaoMenu";
 import BotaoOpcoes from "@/components/botaoMenu/botaoOpcoes";
 import { useUserContext } from "@/context/usuarioContext";
-import { IconBrandCashapp } from "@tabler/icons-react";
+import { BankAccountIcon, Text } from "evergreen-ui";
 
 export default function Cabecalho() {
     const { nome } = useUserContext();
@@ -10,8 +10,8 @@ export default function Cabecalho() {
         <div className="flex justify-between items-center min-h-12 bg-blue-900 text-white">
             <div className="flex items-center justify-between gap-5 px-2 w-80">
                 <div className="flex items-center gap-4">
-                    <IconBrandCashapp />
-                    Departamento Pessoal
+                    <BankAccountIcon color="white" size={18} />
+                    <Text color='white' >Departamento Pessoal</Text>
                 </div>
                 <div className="flex items-center justify-center">
                     <BotaoMenu />

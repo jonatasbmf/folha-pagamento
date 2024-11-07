@@ -14,7 +14,7 @@ export default function MenuItem(props: MenuItemProps) {
     return (
         <div className="cursor-pointer px-2 rounded hover:bg-gray-400 hover:shadow-lg ">
             <Link href={props.path ?? "#"} className="flex items-center gap-2 h-9 py-2">
-                <IconComponent size={24} />
+                <IconComponent color="dark-grey" size={16} />
                 <Text size={400}>{props.label}</Text>
             </Link>
         </div>

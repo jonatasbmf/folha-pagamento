@@ -30,6 +30,7 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
                 onConfirm={() => {
                     if (excluir) {
                         excluir(id!);
+                        setModalAberto(false);
                     }
                 }}
             />

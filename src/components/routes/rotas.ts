@@ -1,41 +1,53 @@
-import { IconAsset, IconBuildingCommunity, IconHome, IconKeyboard } from "@tabler/icons-react";
+import { BriefcaseIcon, FolderNewIcon, HomeIcon, InheritedGroupIcon, KeyIcon, ManualIcon, UserIcon } from "evergreen-ui";
 
 const rotas = [
     {
         key: 1,
         path: "/",
         label: "Home",
-        icon: IconHome
+        icon: HomeIcon
     },
     {
         key: 2,
         path: "/empresa",
         label: "Empresa",
-        icon: IconBuildingCommunity
+        icon: BriefcaseIcon
     },
     {
         key: 3,
         path: "/cadastro/funcionario",
         label: "Cadastro Funcionarios",
-        icon: IconKeyboard
+        icon: FolderNewIcon
     },
     {
         key: 4,
         path: "/tabela/inss",
         label: "Tabela Inss",
-        icon: IconKeyboard
+        icon: ManualIcon
 
     }, {
         key: 5,
         path: "/tabela/irrf",
         label: "Tabela Irrf",
-        icon: IconKeyboard
+        icon: ManualIcon
     },
     {
         key: 6,
-        path: "#",
-        label: "Configurações",
-        icon: IconAsset
+        path: "/cadastro/grupo-usuario",
+        label: "Grupo Usuário",
+        icon: InheritedGroupIcon
+    },
+    {
+        key: 7,
+        path: "/cadastro/permissao",
+        label: "Permissão",
+        icon: KeyIcon
+    },
+    {
+        key: 8,
+        path: "/cadastro/usuario",
+        label: "Usuário",
+        icon: UserIcon
     }
 ];
 

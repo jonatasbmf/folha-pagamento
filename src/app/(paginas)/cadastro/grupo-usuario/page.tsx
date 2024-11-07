@@ -21,7 +21,7 @@ const page = () => {
         nome,
         descricao,
         setDescricao,
-        id,
+        id, setId,
         excluir, salvar,
         atualizar,
     } = useGrupoUsuario();
@@ -30,13 +30,26 @@ const page = () => {
 
     useEffect(() => { listarTodos() }, []);
 
-    const salvarGrupoUsuario = () => {
-        salvar();
+    const salvarGrupoUsuario = async () => {
+        await salvar();
         limparFormulario();
         setModalFormularioAberto(false);
-        listarTodos();
+        await listarTodos();
     }
 
+    const carregarFormulario = (grupoUsuario: GrupoUsuario) => {
+        setId(grupoUsuario.id!);
+        setNome(grupoUsuario.nome);
+        setDescricao(grupoUsuario.descricao);
+        setModalFormularioAberto(true);
+    }
+
+    const excluirRegistro = async () => {
+        await excluir(id);
+        limparFormulario();
+        setModalFormularioAberto(false);
+        await listarTodos();
+    }
 
     return (
         <div>
@@ -51,10 +64,10 @@ const page = () => {
                     setNome={setNome}
                     descricao={descricao}
                     setDescricao={setDescricao}
-                    excluir={excluir}
+                    excluir={excluirRegistro}
                     salvar={salvarGrupoUsuario}
                     atualizar={atualizar}
-
+                    limparFormulario={limparFormulario}
                 />
                 }
             />
@@ -85,7 +98,7 @@ const page = () => {
                         </Table.Row>
                     ) : (
                         grupoUsuarios.map((grupoUsuario) => (
-                            <Table.Row height={40} paddingX={10} key={grupoUsuario.id} isSelectable onSelect={() => irParaPagina(`grupoUsuario/${grupoUsuario.id!}`)}>
+                            <Table.Row height={40} paddingX={10} key={grupoUsuario.id} isSelectable onSelect={() => carregarFormulario(grupoUsuario)}>
                                 <Table.TextCell>{grupoUsuario.nome}</Table.TextCell>
                                 <Table.TextCell>{grupoUsuario.descricao}</Table.TextCell>
                             </Table.Row>
