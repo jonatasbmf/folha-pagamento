@@ -1,7 +1,6 @@
 interface Usuario {
     id?: number;
     email: string;
-    name: string;
+    nome: string;
     senha: string;
-    salt: string;
 }

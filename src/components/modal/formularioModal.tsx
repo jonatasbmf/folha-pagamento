@@ -22,7 +22,6 @@ const FormularioModal = (props: FormularioModalProps) => {
             shouldCloseOnOverlayClick={false}
             isShown={modalAberto}
             title={tituloModal}
-            minHeightContent={400}
             width={'80%'}
             onCloseComplete={onClose}
             hasFooter={false}

@@ -19,7 +19,7 @@ const usePermissao = () => {
     }
 
     const salvar = async () => {
-        var novaPermissao: Permissao = {
+        const novaPermissao: Permissao = {
             nome,
             descricao
         }
@@ -42,7 +42,7 @@ const usePermissao = () => {
     }
 
     const atualizar = async () => {
-        var permissaoAtualizada = {
+        const permissaoAtualizada = {
             id,
             nome,
             descricao
@@ -81,7 +81,7 @@ const usePermissao = () => {
     const obterPorNome = async () => {
         try {
             setLoading(true);
-            var permissoesResult = await permissaoService.obterPorNome(termo);
+            const permissoesResult = await permissaoService.obterPorNome(termo);
 
             if (permissoesResult.statusCode === 200)
                 setPermissoes(permissoesResult.resultado);
@@ -100,7 +100,7 @@ const usePermissao = () => {
         try {
             setLoading(true);
 
-            var permissoesResult = await permissaoService.listarTodos();
+            const permissoesResult = await permissaoService.listarTodos();
             if (permissoesResult.statusCode === 200)
                 setPermissoes(permissoesResult.resultado);
             else

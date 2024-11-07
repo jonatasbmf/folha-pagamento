@@ -4,6 +4,7 @@ interface RetornoApi {
     statusCode: number;
     resultado: any;
 }
+
 const salvar = async (permissao: Permissao): Promise<RetornoApi> => {
     var result = await api_back.post('/permissao', permissao);
     return {
