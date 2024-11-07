@@ -52,11 +52,17 @@ export const useGrupoUsuario = () => {
                 nome: nome,
                 descricao: descricao
             };
+
+            if (!validarGrupoUsuario(nome, descricao)) {
+                toast.error('[validacao] Formulário inválido.');
+                return;
+            }
+
             await grupoUsuarioService.criar(novoGrupoUsuario);
             toast.success("Grupo de usuário salvo com sucesso!");
         } catch (error) {
             console.error(error);
-            toast.error("Erro ao salvar grupo de usuário.");
+            toast.error("[catch] Erro ao salvar grupo de usuário.");
         } finally {
             setLoading(false);
         }
@@ -70,11 +76,17 @@ export const useGrupoUsuario = () => {
                 nome: nome,
                 descricao: descricao
             };
+
+            if (!validarGrupoUsuario(nome, descricao)) {
+                toast.error('[validacao] Formulário inválido.');
+                return;
+            }
+
             await grupoUsuarioService.atualizar(grupoUsuarioAtualizado);
             toast.success("Grupo de usuário atualizado com sucesso!");
         } catch (error) {
             console.error(error);
-            toast.error("Erro ao atualizar grupo de usuário.");
+            toast.error("[catch] Erro ao atualizar grupo de usuário.");
         } finally {
             setLoading(false);
         }

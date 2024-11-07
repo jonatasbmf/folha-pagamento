@@ -2,8 +2,8 @@ import empresa_service from "@/service/module/empresaService/empresa.service";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { verificarValidadeFormulario } from "./helpers/validacaoFormulario";
 import { useEstadoEmpresa } from "./useEstadoEmpresa.hook";
+import { verificarValidadeFormulario } from "./utils/validacaoFormulario";
 
 export const useNovaEmpresa = () => {
     const [loading, setLoading] = useState(false);

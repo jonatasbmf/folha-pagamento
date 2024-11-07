@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import buscarPorRazaoSocial from "./helpers/buscarEmpresaPorRazaoSocial";
-import listarTodasEmpresas from "./helpers/listarTodasEmpresas";
+import buscarPorRazaoSocial from "./utils/buscarEmpresaPorRazaoSocial";
+import listarTodasEmpresas from "./utils/listarTodasEmpresas";
 
 export const useEmpresa = () => {
     const [empresa, setEmpresa] = useState("");

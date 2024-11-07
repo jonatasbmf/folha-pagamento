@@ -17,6 +17,9 @@ const FormularioModal = (props: FormularioModalProps) => {
 
     return (
         <Dialog
+            hasClose={true}
+            shouldCloseOnEscapePress={false}
+            shouldCloseOnOverlayClick={false}
             isShown={modalAberto}
             title={tituloModal}
             minHeightContent={400}

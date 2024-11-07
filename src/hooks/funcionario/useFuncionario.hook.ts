@@ -2,9 +2,9 @@ import { converterFloatParaMoedaString, converterMoedaStringParaFloat } from "@/
 import funcionario_service from "@/service/module/funcionarioService/funcionario.service";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import listarTodasEmpresas from "../empresa/helpers/listarTodasEmpresas";
+import listarTodasEmpresas from "../empresa/utils/listarTodasEmpresas";
 import { useNavegacao } from "../useNavegacao.hook";
-import { validarFuncionario } from "./helpers/validacaoFuncionario";
+import { validarFuncionario } from "./utils/validacaoFuncionario";
 
 export const useFuncionario = () => {
     const [id, setId] = useState<number>(0);

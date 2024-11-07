@@ -2,7 +2,6 @@
 import CabecalhoPaginaBuscaModalFormulario from "@/components/cabecalhoPagina/cabecalhoPaginaBuscaModalFormulario";
 import FormularioModal from "@/components/modal/formularioModal";
 import useGrupoUsuario from "@/hooks/grupoUsuario/useGrupoUsuario.hook";
-import { useNavegacao } from "@/hooks/useNavegacao.hook";
 import { PlusIcon, Table, Text } from "evergreen-ui";
 import { useEffect, useState } from "react";
 import Loading from "react-loading";
@@ -25,7 +24,7 @@ const page = () => {
         excluir, salvar,
         atualizar,
     } = useGrupoUsuario();
-    const { irParaPagina } = useNavegacao();
+
     const [modalFormularioAberto, setModalFormularioAberto] = useState(false);
 
     useEffect(() => { listarTodos() }, []);

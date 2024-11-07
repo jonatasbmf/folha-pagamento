@@ -22,9 +22,12 @@ const ConfirmacaoModal = (props: ConfirmacaoModalProps) => {
             isShown={modalAberto}
             title={tituloModal}
             onCloseComplete={onClose}
+            onConfirm={onConfirm}
             confirmLabel="Confirmar"
             cancelLabel="Cancelar"
-            onConfirm={onConfirm}
+            hasClose={true}
+            shouldCloseOnEscapePress={false}
+            shouldCloseOnOverlayClick={false}
         >
             {textoModal}
         </Dialog>
