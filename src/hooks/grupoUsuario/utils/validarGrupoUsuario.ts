@@ -4,3 +4,5 @@ const validarGrupoUsuario = (nome: string, descricao: string) => {
 
     return nomeValido && descricaoValido;
 }
+
+export default validarGrupoUsuario;

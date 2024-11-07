@@ -1,6 +1,8 @@
 import grupoUsuarioService from "@/service/module/grupoUsuario/grupoUsuario.service";
+
 import { useState } from "react";
 import { toast } from "react-toastify";
+import validarGrupoUsuario from "./utils/validarGrupoUsuario";
 
 export const useGrupoUsuario = () => {
     const [id, setId] = useState<number>(0);
@@ -58,7 +60,7 @@ export const useGrupoUsuario = () => {
                 return;
             }
 
-            await grupoUsuarioService.criar(novoGrupoUsuario);
+            await grupoUsuarioService.incluir(novoGrupoUsuario);
             toast.success("Grupo de usuário salvo com sucesso!");
         } catch (error) {
             console.error(error);

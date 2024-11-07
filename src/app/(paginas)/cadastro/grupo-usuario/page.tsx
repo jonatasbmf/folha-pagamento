@@ -85,8 +85,7 @@ const page = () => {
             <Table>
                 <Table.Head paddingX={10}>
                     <Table.TextHeaderCell>Nome</Table.TextHeaderCell>
-                    <Table.TextHeaderCell>Salário</Table.TextHeaderCell>
-                    <Table.TextHeaderCell>Empresa</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Descrição</Table.TextHeaderCell>
                 </Table.Head>
                 <Table.Body height={240}>
                     {grupoUsuarios.length === 0 ? (

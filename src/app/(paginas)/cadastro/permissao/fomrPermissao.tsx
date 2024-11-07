@@ -3,7 +3,7 @@ import ConfirmacaoModal from "@/components/modal/confirmacaoModal";
 import { Button, Pane } from "evergreen-ui";
 import { useState } from "react";
 
-type FormGrupoUsuarioProps = {
+type FormPermissaoProps = {
     id?: number;
     nome: string;
     setNome: (nome: string) => void;
@@ -15,7 +15,7 @@ type FormGrupoUsuarioProps = {
     limparFormulario?: () => void;
 }
 
-const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
+function FormPermissao(props: FormPermissaoProps) {
     const { id, nome, setNome, descricao, setDescricao, excluir, salvar, atualizar, limparFormulario } = props;
 
     const [modalAberto, setModalAberto] = useState(false);
@@ -23,8 +23,8 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
     return (
         <>
             <ConfirmacaoModal
-                textoModal="Confirma exclusão do Grupo de usuário?"
-                tituloModal="Excluir Grupo de usuário"
+                textoModal="Confirma exclusão do Permissão?"
+                tituloModal="Excluir permissão"
                 modalAberto={modalAberto}
                 onClose={() => setModalAberto(false)}
                 onConfirm={() => {
@@ -32,27 +32,24 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
                         excluir(id!);
                         setModalAberto(false);
                     }
-                }}
-            />
+                }} />
             <div className="flex flex-col p-4">
                 <Pane padding={16} background="tint2" borderRadius={3}>
                     <input style={{ display: 'none' }} type="number" disabled value={id} />
                     <InputTexto
                         label="Nome"
-                        placeholder="Informe nome do Grupo."
+                        placeholder="Informe nome da permissão."
                         validationMessage="Campo não pode ficar vazio"
                         value={nome}
                         required
-                        setValue={setNome}
-                    />
+                        setValue={setNome} />
                     <InputTexto
                         label="Descrição"
-                        placeholder="Descreva o grupo e personas que devem usar o grupo."
+                        placeholder="Descreva onde essa permissão impacta."
                         validationMessage="Campo não pode ficar vazio"
                         value={descricao}
                         required
-                        setValue={setDescricao}
-                    />
+                        setValue={setDescricao} />
                 </Pane>
 
                 <Pane marginTop={10} padding={16} background="tint2" borderRadius={3}>
@@ -80,4 +77,4 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
     );
 }
 
-export default FormGrupoUsuario;
+export default FormPermissao;

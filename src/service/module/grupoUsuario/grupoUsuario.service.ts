@@ -1,6 +1,6 @@
 import { api_back } from "@/service/api/api";
 
-const criar = async (grupoUsuario: GrupoUsuario) => {
+const incluir = async (grupoUsuario: GrupoUsuario) => {
     return await api_back.post('/grupo-usuario', grupoUsuario);
 }
 
@@ -25,7 +25,7 @@ const buscarPorNome = async (nome: string) => {
 }
 
 const grupoUsuarioService = {
-    criar,
+    incluir,
     atualizar,
     excluir,
     listarTodos,
