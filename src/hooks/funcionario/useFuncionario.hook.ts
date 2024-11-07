@@ -1,5 +1,5 @@
 import { converterFloatParaMoedaString, converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
-import funcionario_service from "@/service/module/funcionarioService/funcionarioService";
+import funcionario_service from "@/service/module/funcionarioService/funcionario.service";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import listarTodasEmpresas from "../empresa/helpers/listarTodasEmpresas";

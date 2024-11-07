@@ -1,5 +1,5 @@
 import { converterMoedaStringParaFloat } from "@/helpers/conversorMoeda";
-import irrfService from "@/service/module/irrfService/irrfService";
+import irrfService from "@/service/module/irrfService/irrf.service";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import validarIrrf from "./helpers/validarIrrf";

@@ -1,7 +1,7 @@
 "use client";
 import { useUserContext } from "@/context/usuarioContext";
 import jwtTokenServico from "@/service/jwt/jwtTokenServico";
-import login_service from "@/service/module/loginService/loginService";
+import login_service from "@/service/module/loginService/login.service";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 

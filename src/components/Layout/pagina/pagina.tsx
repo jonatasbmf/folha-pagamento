@@ -3,14 +3,14 @@ import LoginPage from "@/app/login/page";
 import validarToken from "@/components/tokerValidador/utils/validarToken";
 import { useUserContext } from "@/context/usuarioContext";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import BarraLateral from "../barraLateral/barraLateral";
 import Cabecalho from "../cabecalho/cabecalho";
 import Rodape from "../rodape/rodape";
 
-const Pagina = React.memo((props: any) => {
+const Pagina = ((props: any) => {
     const { logado, setLogado } = useUserContext();
 
     const path = usePathname();

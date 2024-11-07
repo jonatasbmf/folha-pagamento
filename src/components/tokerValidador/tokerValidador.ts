@@ -3,10 +3,10 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import validarToken from './utils/validarToken';
 
-const TokenValidator = async () => {
+const TokenValidator = () => {
 
     const rota = useRouter();
-    const token = await validarToken();
+    const token = validarToken();
     const validaSituacaoUsuarioLogado = () => {
         if (!token)
             rota.push('/login')

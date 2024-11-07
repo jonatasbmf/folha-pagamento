@@ -4,7 +4,7 @@ import Loading from "@/components/loading/loading";
 import { converterFloatParaMoedaString } from "@/helpers/conversorMoeda";
 import { useFuncionario } from "@/hooks/funcionario/useFuncionario.hook";
 import { useNavegacao } from "@/hooks/useNavegacao.hook";
-import { PlusIcon, Table } from "evergreen-ui";
+import { PlusIcon, Table, Text } from "evergreen-ui";
 import { useEffect } from "react";
 
 export default function Page() {
@@ -48,7 +48,11 @@ export default function Page() {
                 <Table.Body height={240}>
                     {funcionarios.length === 0 ? (
                         <Table.Row>
-                            <Table.Cell>Nenhum funcionário localizado!</Table.Cell>
+                            <Table.Cell>
+                                <Text>
+                                    Nenhum funcionário localizado!
+                                </Text>
+                            </Table.Cell>
                         </Table.Row>
                     ) : (
                         funcionarios.map((funcionario) => (

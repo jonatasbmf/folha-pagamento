@@ -1,4 +1,4 @@
-import empresa_service from "@/service/module/empresaService/empresaService";
+import empresa_service from "@/service/module/empresaService/empresa.service";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -73,6 +73,7 @@ export const useEditarEmpresa = () => {
             voltarPaginaAnterior();
         } catch (error) {
             console.error(error);
+            toast.error(`[catch] Erro ao atualizar a empresa!`)
         } finally {
             setLoading(false);
         }

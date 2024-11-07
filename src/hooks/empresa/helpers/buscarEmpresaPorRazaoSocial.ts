@@ -1,4 +1,4 @@
-import empresa_service from "@/service/module/empresaService/empresaService";
+import empresa_service from "@/service/module/empresaService/empresa.service";
 
 const buscarPorRazaoSocial = async (razaoSocial: string): Promise<Empresa[] | undefined> => {
     try {

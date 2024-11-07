@@ -1,4 +1,4 @@
-import empresa_service from "@/service/module/empresaService/empresaService";
+import empresa_service from "@/service/module/empresaService/empresa.service";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -36,10 +36,11 @@ export const useNovaEmpresa = () => {
         try {
             setLoading(true)
             await empresa_service.salvarNovaEmpresa(novaEmpresa);
-
+            toast.success(`Empresa salva com sucesso!`);
             voltarPaginaAnterior();
         } catch (error) {
             console.log(error)
+            toast.error(`[catch] Erro ao tentar gravar Empresa!`)
         } finally {
             setLoading(false)
         }
