@@ -57,53 +57,57 @@ A documentação e o próprio Docker-compose estão em: BancoLocal.
 
 2. Instale as dependências:
 
-```bash
- npm i
-```
+   ```bash
+   npm i
+   ```
 
 3. Inicie o servidor de desenvolvimento:
 
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
 ### Back-end
 
 1. Clone o repositório:
 
-```bash
-git clone <https://github.com/jonatasbmf/folha-pagamento-api>
-```
+   ```bash
+   git clone https://github.com/jonatasbmf/folha-pagamento-api
+   ```
 
 2. Instale as dependências:
 
-```bash
-npm i
-```
+   ```bash
+   npm i
+   ```
 
 3. Gere os arquivos do Prisma:
 
-```bash
-npx prisma generate
-```
+   ```bash
+   npx prisma generate
+   ```
 
 4. Execute as migrações:
 
-```bash
-npx prisma migrate dev --name construir_banco
-```
+   ```bash
+   npx prisma migrate dev --name construir_banco
+   ```
 
 5. Inicialize os dados:
 
-```bash
-npm run seed
-```
+   ```bash
+   npm run seed
+   ```
 
 6. Inicie o servidor de desenvolvimento:
 
-```bash
-npm run start:dev
-```
+   ```bash
+   npm run start:dev
+   ```
 
-Contribuições
+### Contribuições
 Esses repositórios são públicos, sinta-se à vontade para explorar e contribuir. Se tiver alguma sugestão de melhoria, faça um PR com a ideia. É muito melhor sugerir melhorias do que apenas apontar problemas.
+
+### Usuario e senha inicial
+sysadmin@sistema.com
+P@ssw0rd
