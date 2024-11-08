@@ -23,6 +23,7 @@ const page = () => {
         id, setId,
         excluir, salvar,
         atualizar,
+        permissoes, setPermissoes
     } = useGrupoUsuario();
 
     const [modalFormularioAberto, setModalFormularioAberto] = useState(false);
@@ -30,6 +31,7 @@ const page = () => {
     useEffect(() => { listarTodos() }, []);
 
     const salvarGrupoUsuario = async () => {
+
         await salvar();
         limparFormulario();
         setModalFormularioAberto(false);
@@ -67,6 +69,8 @@ const page = () => {
                     salvar={salvarGrupoUsuario}
                     atualizar={atualizar}
                     limparFormulario={limparFormulario}
+                    permissoes={permissoes}
+                    setPermissoes={setPermissoes}
                 />
                 }
             />

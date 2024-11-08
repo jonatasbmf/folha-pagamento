@@ -10,6 +10,7 @@ export const useGrupoUsuario = () => {
     const [descricao, setDescricao] = useState<string>('');
     const [grupoUsuarios, setGrupoUsuarios] = useState<GrupoUsuario[]>([]);
     const [grupoUsuario, setGrupoUsuario] = useState<GrupoUsuario | null>(null);
+    const [permissoes, setPermissoes] = useState<number[]>([]);
     const [loading, setLoading] = useState(false);
     const [termo, setTermo] = useState<string>('');
 
@@ -52,9 +53,10 @@ export const useGrupoUsuario = () => {
         try {
             const novoGrupoUsuario: GrupoUsuario = {
                 nome: nome,
-                descricao: descricao
+                descricao: descricao,
+                permissoes: permissoes
             };
-
+            console.log(novoGrupoUsuario)
             if (!validarGrupoUsuario(nome, descricao)) {
                 toast.error('[validacao] Formulário inválido.');
                 return;
@@ -76,8 +78,10 @@ export const useGrupoUsuario = () => {
             const grupoUsuarioAtualizado: GrupoUsuario = {
                 id: id,
                 nome: nome,
-                descricao: descricao
+                descricao: descricao,
+                permissoes: permissoes
             };
+            console.log(grupoUsuarioAtualizado)
 
             if (!validarGrupoUsuario(nome, descricao)) {
                 toast.error('[validacao] Formulário inválido.');
@@ -120,6 +124,7 @@ export const useGrupoUsuario = () => {
         grupoUsuarios,
         grupoUsuario,
         setGrupoUsuario,
+        permissoes, setPermissoes,
         termo,
         setTermo,
         loading,

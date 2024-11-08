@@ -2,10 +2,15 @@
 
 import usePermissao from "@/hooks/permiisao/usePermissao.hook";
 import { Checkbox, Pane, Text } from "evergreen-ui";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
-const SelecaoPermissao = () => {
-    const [permissoesSelecionadas, setPermissoesSelecionadas] = useState<number[]>([])
+interface SelecaoPermissaoProps {
+    permissoesSelecionadas: number[];
+    setPermissoesSelecionadas: Dispatch<SetStateAction<number[]>>
+}
+
+const SelecaoPermissao = (props: SelecaoPermissaoProps) => {
+    const { setPermissoesSelecionadas, permissoesSelecionadas } = props;
     const { listarTodas, permissoes } = usePermissao();
 
     useEffect(() => {
@@ -19,15 +24,15 @@ const SelecaoPermissao = () => {
     };
 
     return (
-        <Pane className="shadow-md" marginTop={10} padding={16} background="tint2" borderRadius={3} boxShadow={2}>
+        <Pane className="shadow-md" marginTop={10} paddingY={16} background="tint2" borderRadius={3} boxShadow={2}>
             <Text>Selecione as permissões associadas a esse Grupo:</Text>
             {
                 permissoes.length === 0 ? (
                     <Text>Favor cadastrar permissões, nenhuma disponível para seleção!</Text>
                 ) : (
-                    <div className="flex flex-1 gap-3 mt-3 flex-wrap" >
+                    <div className="flex mt-3 flex-wrap" >
                         {permissoes.map((permissao) =>
-                            <div className="border rounded-md h-5 py-4 flex  justify-center items-center" style={{ width: '30%' }} key={permissao.id}>
+                            <div className="flex w-4/12 h-5 px-2 py-4 items-center" key={permissao.id}>
                                 <Checkbox
                                     label={permissao.nome}
                                     checked={permissoesSelecionadas.includes(permissao.id!)}

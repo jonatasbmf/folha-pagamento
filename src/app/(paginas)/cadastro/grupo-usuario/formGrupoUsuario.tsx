@@ -1,7 +1,7 @@
 import InputTexto from "@/components/inputs/inputTexto";
 import ConfirmacaoModal from "@/components/modal/confirmacaoModal";
 import { Button, Pane } from "evergreen-ui";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import SelecaoPermissao from "./selecaoPermissao";
 
 type FormGrupoUsuarioProps = {
@@ -14,10 +14,12 @@ type FormGrupoUsuarioProps = {
     salvar?: () => void;
     atualizar?: () => void;
     limparFormulario?: () => void;
+    permissoes: number[];
+    setPermissoes: Dispatch<SetStateAction<number[]>>
 }
 
 const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
-    const { id, nome, setNome, descricao, setDescricao, excluir, salvar, atualizar, limparFormulario } = props;
+    const { id, nome, setNome, descricao, setDescricao, excluir, salvar, atualizar, limparFormulario, permissoes, setPermissoes } = props;
 
     const [modalAberto, setModalAberto] = useState(false);
 
@@ -56,7 +58,7 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
                     />
                 </Pane>
 
-                <SelecaoPermissao />
+                <SelecaoPermissao permissoesSelecionadas={permissoes} setPermissoesSelecionadas={setPermissoes} />
 
                 <Pane className="shadow-md" marginTop={10} padding={16} background="tint2" borderRadius={3}>
                     <div className="flex justify-end gap-2">
