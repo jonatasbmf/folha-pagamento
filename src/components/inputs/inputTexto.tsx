@@ -10,6 +10,8 @@ interface InputTextoProps {
     disabled?: boolean;
     value: string;
     setValue: (value: string) => void;
+    password?: boolean;
+    email?: boolean;
 }
 
 export interface InputTextoRef {
@@ -25,7 +27,9 @@ const InputTexto = forwardRef<InputTextoRef, InputTextoProps>((props, ref) => {
         validationMessage,
         disabled,
         value,
-        setValue
+        setValue,
+        password,
+        email
     } = props;
 
     const [valido, setValido] = useState(true);
@@ -46,6 +50,7 @@ const InputTexto = forwardRef<InputTextoRef, InputTextoProps>((props, ref) => {
 
     return (
         <TextInputField
+            type={password ? 'password' : email ? 'email' : 'text'}
             onBlur={validarCampo}
             isInvalid={!valido}
             disabled={disabled}
