@@ -78,14 +78,14 @@ export default function Page() {
             </div>
 
             <Text >Selecione uma linha da tabela para edição!</Text>
-            <Table>
+            <Table className="shadow-md" >
                 <Table.Head paddingX={10}>
                     <Table.TextHeaderCell>Ano</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Faixa Mínima</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Faixa Máxima</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Aliquota</Table.TextHeaderCell>
                 </Table.Head>
-                <Table.Body height={240}>
+                <Table.Body maxHeight={240}>
                     {listaInss.length === 0 ? (
                         <Table.Row>
                             <Table.Cell>Nenhum aliquota cadastrada!</Table.Cell>

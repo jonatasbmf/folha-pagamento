@@ -37,12 +37,12 @@ export default function Page() {
                 loading={loading}
             />
 
-            <Table>
+            <Table className="shadow-md" >
                 <Table.Head paddingX={10}>
                     <Table.TextHeaderCell>Nome</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Razão Social</Table.TextHeaderCell>
                 </Table.Head>
-                <Table.Body height={240}>
+                <Table.Body maxHeight={240}>
                     {empresas.length === 0 ? (
                         <Table.Row>
                             <Table.Cell>Nenhuma empresa localizada!</Table.Cell>

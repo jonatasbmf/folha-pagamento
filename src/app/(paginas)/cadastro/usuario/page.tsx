@@ -92,7 +92,7 @@ export default function UsuarioPage() {
                 />}
             />
 
-            <Table>
+            <Table className="shadow-md" >
                 <Table.Head>
                     <Table.TextHeaderCell>
                         Nome

@@ -72,10 +72,10 @@ export default function PermissaoPage() {
             />
 
             <CabecalhoPaginaBuscaModalFormulario
-                labelCabecalho='Permissões e Recursos'
+                labelCabecalho='Permissões'
                 acaoBotao={setModalFormularioAberto}
                 iconeBotao={PlusIcon}
-                labelBotao={'Nova(o)'}
+                labelBotao={'Nova'}
                 placeHolderBusca={"Informe o nome da permissão e clique na lupa!"}
                 termoBusca={termo}
                 setTermoBusca={setTermo}
@@ -83,12 +83,12 @@ export default function PermissaoPage() {
                 loading={loading}
             />
 
-            <Table>
+            <Table className="shadow-md" >
                 <Table.Head>
                     <Table.TextHeaderCell>Nome</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Descrição</Table.TextHeaderCell>
                 </Table.Head>
-                <Table.Body height={240}>
+                <Table.Body maxHeight={240}>
                     {Array.isArray(permissoes) && permissoes.length === 0 ?
                         (
                             <Table.Row>

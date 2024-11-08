@@ -18,7 +18,7 @@ const CabecalhoPaginaComNavegacao: React.FC<CabecalhoPaginaNavegacaoProps> = (
             <div className="flex flex-1 mb-3">
                 <Heading size={600}>{labelCabecalho}</Heading>
             </div>
-            <Pane padding={16} background="tint2" borderRadius={3}>
+            <Pane className="shadow-md" padding={16} background="tint2" borderRadius={3}>
                 <Pane className="flex items-center justify-between gap-4">
                     <Button
                         className="w-36"

@@ -37,11 +37,11 @@ export default function Page() {
                 setTermoBusca={setTermo}
                 termoBusca={termo}
             />
-            <Table>
+            <Table className="shadow-md" >
                 <Table.Head paddingX={10}>
                     <Table.TextHeaderCell>Ano de referencia</Table.TextHeaderCell>
                 </Table.Head>
-                <Table.Body height={240}>
+                <Table.Body maxHeight={240}>
                     {listaAno.length === 0 ? (
                         <Table.Row>
                             <Table.Cell>

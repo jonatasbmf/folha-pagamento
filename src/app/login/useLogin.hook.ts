@@ -30,8 +30,6 @@ export const useLogin = () => {
             } else {
                 setErroLogin(resposta.message || "Erro ao tentar fazer login. Por favor, tente novamente.");
             }
-
-            router.refresh();
         } catch (err) {
             setErroLogin("Usuário ou senha inválidos. Por favor, verifique suas credenciais.");
         }

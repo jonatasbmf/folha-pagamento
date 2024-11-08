@@ -1,8 +1,9 @@
 "use client"
+import { Alert } from "evergreen-ui";
 import { useLogin } from "./useLogin.hook";
 
 export default function LoginPage() {
-    var { login, email, setEmail, password, setPassword } = useLogin();
+    var { login, email, setEmail, password, setPassword, erroLogin } = useLogin();
 
 
     return (
@@ -51,6 +52,10 @@ export default function LoginPage() {
                             Esqueceu a senha?
                         </a> */}
                     </div>
+
+                    {erroLogin &&
+                        <Alert intent="danger"
+                            title={erroLogin} />}
                 </form>
             </div>
         </div>

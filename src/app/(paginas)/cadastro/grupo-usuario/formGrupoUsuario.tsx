@@ -2,6 +2,7 @@ import InputTexto from "@/components/inputs/inputTexto";
 import ConfirmacaoModal from "@/components/modal/confirmacaoModal";
 import { Button, Pane } from "evergreen-ui";
 import { useState } from "react";
+import SelecaoPermissao from "./selecaoPermissao";
 
 type FormGrupoUsuarioProps = {
     id?: number;
@@ -35,7 +36,7 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
                 }}
             />
             <div className="flex flex-col p-4">
-                <Pane padding={16} background="tint2" borderRadius={3}>
+                <Pane className="shadow-md" padding={16} background="tint2" borderRadius={3}>
                     <input style={{ display: 'none' }} type="number" disabled value={id} />
                     <InputTexto
                         label="Nome"
@@ -55,7 +56,9 @@ const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
                     />
                 </Pane>
 
-                <Pane marginTop={10} padding={16} background="tint2" borderRadius={3}>
+                <SelecaoPermissao />
+
+                <Pane className="shadow-md" marginTop={10} padding={16} background="tint2" borderRadius={3}>
                     <div className="flex justify-end gap-2">
                         <Button marginRight={16}
                             onClick={id ? atualizar : salvar}

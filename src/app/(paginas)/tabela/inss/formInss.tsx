@@ -62,7 +62,7 @@ export default function FormInss(props: FormInssProps) {
                     }
                 }}
             />
-            <Pane padding={16} background="tint2" borderRadius={3}>
+            <Pane className="shadow-md" padding={16} background="tint2" borderRadius={3}>
                 <input style={{ display: 'none' }} type="number" disabled value={id} />
                 <div className="flex gap-4">
                     <SelectField

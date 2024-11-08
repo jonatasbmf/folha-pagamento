@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex flex-1 items-center gap-4 mb-3">
           <Heading size={600}> Home</Heading>
         </div>
-        <Pane padding={16} background="tint2" borderRadius={3}>
+        <Pane className="shadow-md" padding={16} background="tint2" borderRadius={3}>
           <Pane className="flex flex-col gap-4">
             <Text>
               Estou aprendendo Nest e Next, assim pensei, pq não criar um caso de uso muito simples?

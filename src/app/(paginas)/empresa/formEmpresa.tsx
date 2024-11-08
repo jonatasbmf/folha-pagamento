@@ -54,7 +54,7 @@ export default function FormEmpresa(props: FormEmpresaProps) {
                 }}
             />
 
-            <Pane padding={16} background="tint2" borderRadius={3}>
+            <Pane className="shadow-md" padding={16} background="tint2" borderRadius={3}>
                 <input style={{ display: 'none' }} type="number" disabled value={id} />
                 <InputTexto
                     label="Nome"
@@ -84,7 +84,7 @@ export default function FormEmpresa(props: FormEmpresaProps) {
                     setValue={setEmail}
                 />
             </Pane>
-            <Pane marginTop={10} padding={16} background="tint2" borderRadius={3}>
+            <Pane className="shadow-md" marginTop={10} padding={16} background="tint2" borderRadius={3}>
                 <div className="flex justify-end gap-2">
                     <Button marginRight={16}
                         onClick={id ? atualizarEmpresa : salvarNovaEmpresa}
