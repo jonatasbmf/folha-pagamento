@@ -4,4 +4,5 @@ interface Inss {
     faixaMin: number;
     faixaMax: number;
     aliquota: number;
+    deducao: number;
 }

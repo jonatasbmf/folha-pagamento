@@ -19,6 +19,7 @@ export default function Page() {
         listaInss,
         ano, setAno,
         id, setId,
+        deducao, setDeducao,
         faixaMinString, setFaixaMinString,
         faixaMaxString, setFaixaMaxString,
         aliquotaString, setAliquotaString,
@@ -41,6 +42,7 @@ export default function Page() {
         setAliquotaString(inss.aliquota.toString());
         setFaixaMinString(converterFloatParaMoedaString(inss.faixaMin));
         setFaixaMaxString(converterFloatParaMoedaString(inss.faixaMax));
+        setDeducao(converterFloatParaMoedaString(inss.deducao));
     }
 
     const atulizarAtualizarGrid = async () => {
@@ -70,6 +72,7 @@ export default function Page() {
                         faixaMin={faixaMinString}
                         faixaMax={faixaMaxString}
                         aliquota={aliquotaString}
+                        deducao={deducao}
                         atualizar={atulizarAtualizarGrid}
                         excluir={excluirAtualizarGrid}
                         limparFormulario={limparFormulario}
@@ -77,6 +80,7 @@ export default function Page() {
                         setFaixaMin={setFaixaMinString}
                         setFaixaMax={setFaixaMaxString}
                         setAliquota={setAliquotaString}
+                        setDeducao={setDeducao}
                     />) : null}
             </div>
 
@@ -87,6 +91,7 @@ export default function Page() {
                     <Table.TextHeaderCell>Faixa Mínima</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Faixa Máxima</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Aliquota</Table.TextHeaderCell>
+                    <Table.TextHeaderCell>Dedução</Table.TextHeaderCell>
                 </Table.Head>
                 <Table.Body maxHeight={240}>
                     {listaInss.length === 0 ? (
@@ -100,6 +105,7 @@ export default function Page() {
                                 <Table.TextCell>{converterFloatParaMoedaString(aliquota.faixaMin)}</Table.TextCell>
                                 <Table.TextCell>{converterFloatParaMoedaString(aliquota.faixaMax)}</Table.TextCell>
                                 <Table.TextCell>{aliquota.aliquota}</Table.TextCell>
+                                <Table.TextCell>{converterFloatParaMoedaString(aliquota.deducao)}</Table.TextCell>
                             </Table.Row>
                         ))
                     )}

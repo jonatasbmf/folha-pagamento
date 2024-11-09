@@ -13,6 +13,7 @@ const useInss = () => {
     const [faixaMaxString, setFaixaMaxString] = useState('');
     const [aliquota, setAliquota] = useState(0);
     const [aliquotaString, setAliquotaString] = useState('');
+    const [deducao, setDeducao] = useState('');
     const [listaInss, setListaInss] = useState<Inss[]>([]);
     const [listaAno, setListaAno] = useState<AnoDto[]>([]);
     const [loading, setLoading] = useState(false);
@@ -23,7 +24,8 @@ const useInss = () => {
             ano,
             faixaMax: converterMoedaStringParaFloat(faixaMaxString),
             faixaMin: converterMoedaStringParaFloat(faixaMinString),
-            aliquota: converterMoedaStringParaFloat(aliquotaString)
+            aliquota: converterMoedaStringParaFloat(aliquotaString),
+            deducao: converterMoedaStringParaFloat(deducao)
         }
 
         if (!validarInss(ano, faixaMin, faixaMax, aliquota)) {
@@ -50,7 +52,8 @@ const useInss = () => {
             ano,
             faixaMax: converterMoedaStringParaFloat(faixaMaxString),
             faixaMin: converterMoedaStringParaFloat(faixaMinString),
-            aliquota: converterMoedaStringParaFloat(aliquotaString)
+            aliquota: converterMoedaStringParaFloat(aliquotaString),
+            deducao: converterMoedaStringParaFloat(deducao)
         }
 
         if (!validarInss(ano, faixaMin, faixaMax, aliquota)) {
@@ -62,6 +65,7 @@ const useInss = () => {
             setLoading(true);
             await inssService.atualizar(inssAtualizar);
             toast.success("Inss atualizado com sucesso!");
+            limparFormulario();
         } catch (error) {
             console.error(error);
             toast.error("[catch] Erro ao atualizar o INSS. Verifique o log.");
@@ -166,6 +170,7 @@ const useInss = () => {
         setFaixaMinString('');
         setFaixaMaxString('');
         setAliquotaString('');
+        setDeducao('');
     }
 
     return {
@@ -177,6 +182,7 @@ const useInss = () => {
         faixaMaxString, setFaixaMaxString,
         aliquota, setAliquota,
         aliquotaString, setAliquotaString,
+        deducao, setDeducao,
         listaInss, setListaInss,
         listaAno, setListaAno,
         termo, setTermo,

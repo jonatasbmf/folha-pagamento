@@ -20,6 +20,8 @@ interface FormInssProps {
     atualizar?: () => {};
     excluir?: (value: number) => {};
     limparFormulario: () => {}
+    deducao: string;
+    setDeducao: Dispatch<SetStateAction<string>>;
 }
 
 export default function FormInss(props: FormInssProps) {
@@ -29,7 +31,9 @@ export default function FormInss(props: FormInssProps) {
         faixaMin, setFaixaMin,
         faixaMax, setFaixaMax,
         aliquota, setAliquota,
-        salvar, atualizar, excluir, limparFormulario,
+        salvar, atualizar,
+        excluir, limparFormulario,
+        deducao, setDeducao
     } = props;
 
     const [anos, setAnos] = useState<Number[]>([]);
@@ -103,6 +107,14 @@ export default function FormInss(props: FormInssProps) {
                         value={aliquota}
                         validationMessage="Campo não pode ficar vazio"
                         label="Aliquota"
+                        required
+                        placeholder="0.87"
+                    />
+                    <InputNumeroDecimal
+                        setValue={setDeducao}
+                        value={deducao}
+                        validationMessage="Campo não pode ficar vazio"
+                        label="Deducao"
                         required
                         placeholder="0.87"
                     />

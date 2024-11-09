@@ -66,6 +66,7 @@ const useIrrf = () => {
             setLoading(true);
             await irrfService.atualizar(irrfAtualizar);
             toast.success("IRRF atualizado com sucesso!");
+            limparFormulario();
         } catch (error) {
             console.error(error);
             toast.error("[catch] Erro ao atualizar o IRRF. Verifique o log.");
