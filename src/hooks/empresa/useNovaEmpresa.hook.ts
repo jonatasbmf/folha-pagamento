@@ -22,7 +22,6 @@ export const useNovaEmpresa = () => {
     }
 
     const salvarNovaEmpresa = async () => {
-
         if (!verificarValidadeFormulario(nome, razaoSocial, email)) {
             toast.error(`Preencha corretamente o formulário!`)
             return;
@@ -39,7 +38,7 @@ export const useNovaEmpresa = () => {
             toast.success(`Empresa salva com sucesso!`);
             voltarPaginaAnterior();
         } catch (error) {
-            console.log(error)
+            console.error; (error)
             toast.error(`[catch] Erro ao tentar gravar Empresa!`)
         } finally {
             setLoading(false)

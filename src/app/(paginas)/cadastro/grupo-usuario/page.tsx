@@ -28,13 +28,14 @@ const page = () => {
 
     const [modalFormularioAberto, setModalFormularioAberto] = useState(false);
 
-    useEffect(() => { listarTodos() }, []);
+    useEffect(() => {
+        listarTodos();
+    }, []);
 
     const salvarGrupoUsuario = async () => {
-
         await salvar();
-        limparFormulario();
         setModalFormularioAberto(false);
+        limparFormulario();
         await listarTodos();
     }
 
@@ -42,6 +43,7 @@ const page = () => {
         setId(grupoUsuario.id!);
         setNome(grupoUsuario.nome);
         setDescricao(grupoUsuario.descricao);
+        grupoUsuario.permissoes && setPermissoes(grupoUsuario.permissoes);
         setModalFormularioAberto(true);
     }
 
@@ -57,7 +59,10 @@ const page = () => {
             {loading && <Loading />}
             <FormularioModal
                 modalAberto={modalFormularioAberto}
-                onClose={() => setModalFormularioAberto(false)}
+                onClose={() => {
+                    setModalFormularioAberto(false);
+                    limparFormulario();
+                }}
                 tituloModal="Grupo de Usuários"
                 formulario={<FormGrupoUsuario
                     id={id}

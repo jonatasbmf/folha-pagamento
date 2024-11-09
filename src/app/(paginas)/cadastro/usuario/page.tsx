@@ -16,11 +16,10 @@ export default function UsuarioPage() {
         usuarios,
         termo, setTermo,
         loading,
-        grupoUsuarioId, setGrupoUsuarioId,
+        setGrupoUsuarioId,
         salvar,
         atualizar,
         excluir,
-        buscarPorEmail,
         buscarPorNome,
         listarTodos,
         limparFormulario,
@@ -42,7 +41,7 @@ export default function UsuarioPage() {
         setNome(usuario.nome);
         setEmail(usuario.email);
         setSenha(usuario.senha);
-        setGrupoUsuarioId(usuario.grupoUsuarioId!);
+        usuario.grupoUsuarioId ? setGrupoUsuarioId(usuario.grupoUsuarioId!) : setGrupoUsuarioId(0);
         setModalFormularioAberto(true);
     }
 

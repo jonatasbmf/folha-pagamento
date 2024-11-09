@@ -19,7 +19,17 @@ type FormGrupoUsuarioProps = {
 }
 
 const FormGrupoUsuario = (props: FormGrupoUsuarioProps) => {
-    const { id, nome, setNome, descricao, setDescricao, excluir, salvar, atualizar, limparFormulario, permissoes, setPermissoes } = props;
+    const {
+        id,
+        nome, setNome,
+        descricao, setDescricao,
+        excluir,
+        salvar,
+        atualizar,
+        limparFormulario,
+        permissoes,
+        setPermissoes
+    } = props;
 
     const [modalAberto, setModalAberto] = useState(false);
 

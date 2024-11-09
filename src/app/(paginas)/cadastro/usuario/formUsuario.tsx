@@ -22,23 +22,30 @@ interface FormUsuarioProps {
 }
 
 const FormUsuario = (props: FormUsuarioProps) => {
-    const { id, nome, email, senha, grupoUsuarioId, setNome, setEmail, setSenha, setGrupoUsuarioId, limparFormulario, salvar, atualizar, excluir } = props;
-    const { listarTodos, grupoUsuarios } = useGrupoUsuario();
+    const {
+        id, nome, email,
+        senha, grupoUsuarioId, setNome,
+        setEmail, setSenha, setGrupoUsuarioId,
+        limparFormulario, salvar, atualizar, excluir
+    } = props;
 
+    const { listarTodos, grupoUsuarios } = useGrupoUsuario();
     const [modalAberto, setModalAberto] = useState(false);
     const [senhaConmfirmacao, setSenhaConfirmacao] = useState<string>('');
     const [senhaInvalida, setSenhaInvalida] = useState<boolean>(false);
 
-    useEffect(() => { listarTodos() }, []);
+    useEffect(() => {
+        listarTodos();
+    }, []);
 
     useEffect(() => {
-        if (senhaConmfirmacao !== senha) {
+        if ((!id || id == 0) && senhaConmfirmacao !== senha) {
             setSenhaInvalida(true);
         }
         else {
             setSenhaInvalida(false);
         }
-    }, [senhaConmfirmacao]);
+    }, [senhaConmfirmacao, id]);
 
     return (
         <div>
@@ -95,14 +102,15 @@ const FormUsuario = (props: FormUsuarioProps) => {
                         label="Grupo de Usuário"
                         required
                         value={grupoUsuarioId}
+                        defaultValue='0'
                         onChange={e => setGrupoUsuarioId(+e.target.value)}
                     >
-                        <option value="0" selected>
+                        <option value='0' >
                             Selecione uma empresa
                         </option>
                         {grupoUsuarios ? grupoUsuarios.map(
                             (grupoUsuario) => {
-                                return (<option key={grupoUsuario.id} value={grupoUsuario.id} selected>
+                                return (<option key={grupoUsuario.id} value={grupoUsuario.id} >
                                     {grupoUsuario.nome}
                                 </option>)
                             }

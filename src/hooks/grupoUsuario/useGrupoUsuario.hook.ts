@@ -18,11 +18,13 @@ export const useGrupoUsuario = () => {
         setLoading(true);
         try {
             const resposta = await grupoUsuarioService.listarTodos();
+
             if (resposta.status === 200) {
                 setGrupoUsuarios(resposta.data);
             } else {
                 toast.info("Não foi possível listar todos os grupos de usuários.");
             }
+
         } catch (error) {
             console.error(error);
             toast.error("Erro ao listar grupos de usuários.");
@@ -35,11 +37,13 @@ export const useGrupoUsuario = () => {
         setLoading(true);
         try {
             const resposta = await grupoUsuarioService.buscarPorNome(termo);
+
             if (resposta.status === 200) {
                 setGrupoUsuarios(resposta.data);
             } else {
                 toast.info("Não foi possível encontrar o grupo de usuários.");
             }
+
         } catch (error) {
             console.error(error);
             toast.error("Erro ao buscar grupo de usuários.");
@@ -56,7 +60,7 @@ export const useGrupoUsuario = () => {
                 descricao: descricao,
                 permissoes: permissoes
             };
-            console.log(novoGrupoUsuario)
+
             if (!validarGrupoUsuario(nome, descricao)) {
                 toast.error('[validacao] Formulário inválido.');
                 return;
@@ -81,7 +85,6 @@ export const useGrupoUsuario = () => {
                 descricao: descricao,
                 permissoes: permissoes
             };
-            console.log(grupoUsuarioAtualizado)
 
             if (!validarGrupoUsuario(nome, descricao)) {
                 toast.error('[validacao] Formulário inválido.');
@@ -115,6 +118,13 @@ export const useGrupoUsuario = () => {
         setId(0);
         setNome('');
         setDescricao('');
+        setPermissoes([]);
+    }
+
+    const carregarPermissoes = () => {
+        if (grupoUsuarios.length > 0) {
+            //permissoes: grupoUsuario.grupoUsuarioPermissao.map((permissao) => permissao.permissaoId)
+        }
     }
 
     return {

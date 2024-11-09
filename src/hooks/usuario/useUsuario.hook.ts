@@ -14,7 +14,7 @@ const useUsuario = () => {
 
     const salvar = async () => {
         var novoUsuario: Usuario = {
-            nome, email, senha
+            nome, email, senha, grupoUsuarioId
         }
 
         if (!validarUsuario(nome, email, senha)) {
@@ -35,10 +35,10 @@ const useUsuario = () => {
 
     const atualizar = async () => {
         var usuarioAtualizado: Usuario = {
-            id, nome, email, senha
+            id, nome, email, grupoUsuarioId
         }
 
-        if (!validarUsuario(nome, email, senha)) {
+        if (!validarUsuario(nome, email)) {
             toast.error('[validacao] Não passou pela validação.');
             return;
         }
@@ -101,7 +101,7 @@ const useUsuario = () => {
         setSenha('');
     }
 
-    const validarUsuario = (nome: string, email: string, senha: string): boolean => {
+    const validarUsuario = (nome: string, email: string, senha?: string): boolean => {
         if (nome.length < 3) {
             toast.error('Nome deve ter no mínimo 3 caracteres.');
             return false;
@@ -113,13 +113,13 @@ const useUsuario = () => {
             return false;
         }
 
-        if (senha.length < 6) {
+        if (senha && senha.length < 6) {
             toast.error('Senha deve ter no mínimo 6 caracteres.');
             return false;
         }
 
         const senhaRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d).+$/;
-        if (!senhaRegex.test(senha)) {
+        if (senha && !senhaRegex.test(senha)) {
             toast.error('Senha deve conter pelo menos um caractere maiúsculo, um caractere especial e um número.');
             return false;
         }
