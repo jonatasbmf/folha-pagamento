@@ -18,6 +18,7 @@ export default function FormEditarFuncionario() {
         empresas,
         limparFormulario,
         buscarPorId,
+        deducao, setDeducao
     } = useFuncionario();
 
     const param = useParams<{ id: string }>()
@@ -45,6 +46,8 @@ export default function FormEditarFuncionario() {
                 atualizar={atualizar}
                 apagar={apagar}
                 empresas={empresas}
+                deducao={deducao}
+                setDeducao={setDeducao}
             />
         </>
     )

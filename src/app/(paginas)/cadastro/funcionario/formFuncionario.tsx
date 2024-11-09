@@ -18,6 +18,8 @@ interface FormFuncionarioProps {
     salvar?: () => void;
     limparFormulario: () => void
     apagar?: (value: number) => {}
+    deducao: string;
+    setDeducao: (e: string) => void;
 }
 
 export default function FormFuncionario(props: FormFuncionarioProps) {
@@ -35,7 +37,9 @@ export default function FormFuncionario(props: FormFuncionarioProps) {
         atualizar,
         salvar,
         limparFormulario,
-        apagar
+        apagar,
+        deducao,
+        setDeducao
     } = props;
 
     return (
@@ -66,6 +70,14 @@ export default function FormFuncionario(props: FormFuncionarioProps) {
                     value={salarioString}
                     required
                     setValue={setSalarioString}
+                    validationMessage="Valor precisa ser informado e maior que zero."
+                    placeholder="R$ 0,00"
+                />
+                <InputMoeda
+                    label="Dedução"
+                    value={deducao}
+                    required
+                    setValue={setDeducao}
                     validationMessage="Valor precisa ser informado e maior que zero."
                     placeholder="R$ 0,00"
                 />

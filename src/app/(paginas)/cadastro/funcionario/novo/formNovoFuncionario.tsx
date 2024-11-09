@@ -19,6 +19,7 @@ export function FormNovoFuncionario() {
         empresas,
         listarEmpresas,
         limparFormulario,
+        deducao, setDeducao
     } = useFuncionario();
 
     return (
@@ -34,6 +35,8 @@ export function FormNovoFuncionario() {
                 salvar={salvar}
                 limparFormulario={limparFormulario}
                 empresas={empresas}
+                deducao={deducao}
+                setDeducao={setDeducao}
             />
         </>
     )

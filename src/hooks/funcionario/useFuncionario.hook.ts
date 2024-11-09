@@ -16,7 +16,8 @@ export const useFuncionario = () => {
     const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
     const [funcionario, setFuncionario] = useState<Funcionario>();
     const [termo, setTermo] = useState<string>('');
-    const [empresas, setEmpresas] = useState<Empresa[]>([])
+    const [empresas, setEmpresas] = useState<Empresa[]>([]);
+    const [deducao, setDeducao] = useState('');
 
     const { voltarPaginaAnterior } = useNavegacao();
 
@@ -24,7 +25,8 @@ export const useFuncionario = () => {
         const novoFuncionario = {
             nome,
             salario: converterMoedaStringParaFloat(salarioString),
-            empresaId
+            empresaId,
+            deducao: converterMoedaStringParaFloat(deducao),
         }
 
         if (!validarFuncionario(novoFuncionario.nome, novoFuncionario.salario, novoFuncionario.empresaId)) {
@@ -49,7 +51,8 @@ export const useFuncionario = () => {
             id,
             nome,
             salario: converterMoedaStringParaFloat(salarioString),
-            empresaId
+            empresaId,
+            deducao: converterMoedaStringParaFloat(deducao),
         }
 
         if (!validarFuncionario(atualizarFuncionario.nome, atualizarFuncionario.salario, atualizarFuncionario.empresaId)) {
@@ -131,6 +134,7 @@ export const useFuncionario = () => {
         setNome("")
         setSalario(0);
         setEmpresaId(0);
+        setDeducao('');
     }
 
     const buscarPorId = async (id: number) => {
@@ -147,6 +151,7 @@ export const useFuncionario = () => {
             setId(funcionario.id);
             setEmpresaId(funcionario.empresaId);
             setSalarioString(converterFloatParaMoedaString(funcionario.salario));
+            setDeducao(funcionario.deducao);
         } catch (error) {
             console.error(error);
             toast.error("Nâo foi possivel buscar funcionário.")
@@ -174,6 +179,7 @@ export const useFuncionario = () => {
         empresas,
         limparFormulario,
         buscarPorId,
-        funcionario, setFuncionario
+        funcionario, setFuncionario,
+        deducao, setDeducao
     }
 }
