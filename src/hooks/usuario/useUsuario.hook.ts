@@ -30,7 +30,6 @@ const useUsuario = () => {
             console.error(error);
             toast.error('[catch] Não foi possivel gravar usuário, verifique os logs.')
         }
-
     }
 
     const atualizar = async () => {
@@ -99,6 +98,7 @@ const useUsuario = () => {
         setNome('');
         setEmail('');
         setSenha('');
+        setGrupoUsuarioId(0);
     }
 
     const validarUsuario = (nome: string, email: string, senha?: string): boolean => {
@@ -143,7 +143,6 @@ const useUsuario = () => {
         buscarPorNome,
         listarTodos,
         limparFormulario,
-
     }
 }
 export default useUsuario;

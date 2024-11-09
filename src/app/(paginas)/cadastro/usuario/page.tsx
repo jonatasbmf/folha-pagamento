@@ -25,7 +25,9 @@ export default function UsuarioPage() {
         limparFormulario,
     } = useUsuario();
 
-    useEffect(() => { listarTodos() }, []);
+    useEffect(() => {
+        listarTodos()
+    }, []);
 
     const [modalFormularioAberto, setModalFormularioAberto] = useState(false);
 
@@ -40,13 +42,19 @@ export default function UsuarioPage() {
         setId(usuario.id!);
         setNome(usuario.nome);
         setEmail(usuario.email);
-        setSenha(usuario.senha);
-        usuario.grupoUsuarioId ? setGrupoUsuarioId(usuario.grupoUsuarioId!) : setGrupoUsuarioId(0);
+        setGrupoUsuarioId(usuario.grupoUsuarioId!);
         setModalFormularioAberto(true);
     }
 
     const excluirRegistro = async () => {
         await excluir(id);
+        limparFormulario();
+        setModalFormularioAberto(false);
+        await listarTodos();
+    }
+
+    const atualizarRegistro = async () => {
+        await atualizar();
         limparFormulario();
         setModalFormularioAberto(false);
         await listarTodos();
@@ -84,7 +92,7 @@ export default function UsuarioPage() {
                     setEmail={setEmail}
                     setSenha={setSenha}
                     salvar={salvarRegistro}
-                    atualizar={atualizar}
+                    atualizar={atualizarRegistro}
                     excluir={excluirRegistro}
                     limparFormulario={limparFormulario}
                     setGrupoUsuarioId={setGrupoUsuarioId}

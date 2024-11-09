@@ -74,12 +74,12 @@ export default function FormIrrf(props: FormIrrfProps) {
                         value={ano}
                         onChange={e => setAno(+e.target.value)}
                     >
-                        <option value="0" selected>
+                        <option value="0" >
                             Selecione um ano de referência...
                         </option>
                         {anos ? anos.map(
                             (ano) => {
-                                return (<option key={ano.toString()} value={ano.toString()} selected>
+                                return (<option key={ano.toString()} value={ano.toString()} >
                                     {ano.toString()}
                                 </option>)
                             }

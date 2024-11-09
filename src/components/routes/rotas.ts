@@ -48,6 +48,12 @@ const rotas = [
         path: "/cadastro/usuario",
         label: "Usuário",
         icon: UserIcon
+    },
+    {
+        key: 9,
+        path: "/gerar",
+        label: "Gerar Calculo",
+        icon: BriefcaseIcon
     }
 ];
 

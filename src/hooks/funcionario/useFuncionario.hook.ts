@@ -174,6 +174,6 @@ export const useFuncionario = () => {
         empresas,
         limparFormulario,
         buscarPorId,
-        funcionario
+        funcionario, setFuncionario
     }
 }

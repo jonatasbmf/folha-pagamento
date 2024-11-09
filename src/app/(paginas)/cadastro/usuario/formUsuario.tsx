@@ -102,7 +102,6 @@ const FormUsuario = (props: FormUsuarioProps) => {
                         label="Grupo de Usuário"
                         required
                         value={grupoUsuarioId}
-                        defaultValue='0'
                         onChange={e => setGrupoUsuarioId(+e.target.value)}
                     >
                         <option value='0' >

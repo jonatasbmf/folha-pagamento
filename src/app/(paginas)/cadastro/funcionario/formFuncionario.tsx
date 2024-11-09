@@ -76,12 +76,12 @@ export default function FormFuncionario(props: FormFuncionarioProps) {
                     value={empresaId}
                     onChange={e => setEmpresaId(+e.target.value)}
                 >
-                    <option value="0" selected>
+                    <option value="0" >
                         Selecione uma empresa
                     </option>
                     {empresas ? empresas.map(
                         (empresa) => {
-                            return (<option key={empresa.id} value={empresa.id} selected>
+                            return (<option key={empresa.id} value={empresa.id} >
                                 {empresa.nome}
                             </option>)
                         }

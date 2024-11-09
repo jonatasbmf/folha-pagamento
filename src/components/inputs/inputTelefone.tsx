@@ -53,18 +53,19 @@ const InputTelefone = forwardRef<InputTelefoneRef, InputTelefoneProps>((props, r
             onChange={(e: { target: { value: string; }; }) => setValue(e.target.value)}
             onBlur={validarCampo}
         >
-            {() => (
-                <TextInputField
-                    isInvalid={!valido}
-                    disabled={disabled}
-                    required={required}
-                    label={label}
-                    description={description}
-                    placeholder={placeholder}
-                    validationMessage={!valido && validationMessage ? validationMessage : null}
-                    value={value}
-                />
-            )}
+            {() => {
+                return (
+                    <TextInputField
+                        isInvalid={!valido}
+                        disabled={disabled}
+                        required={required}
+                        label={label}
+                        description={description}
+                        placeholder={placeholder}
+                        validationMessage={!valido && validationMessage ? validationMessage : null}
+                        value={value} />
+                );
+            }}
         </InputMask>
     );
 });
